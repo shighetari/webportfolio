@@ -1,0 +1,17 @@
+// src/assets/scss/_components.scss
+.canvas-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; // This makes the container take up the full viewport height
+    width: 100vw;  // This makes the container take up the full viewport width
+  
+    canvas {
+      width: 100% !important;
+      height: 100% !important;
+      max-width: 100%; // Ensures that the canvas does not overflow the screen width
+      max-height: 100%; // Ensures that the canvas does not overflow the screen height
+      object-fit: contain; // Ensures that the aspect ratio of the canvas is maintained
+    }
+  }
+  
