@@ -8,7 +8,12 @@ import Environment from './Environment';
 import FoxModel from './FoxModel';
 import DialogBox from './DialogBox';
 import '../assets/scss/_components.scss';
-import UmbreonNapping from './UmbreonNapping';
+import '../assets/scss/_base.scss';
+import WorldOne from './WorldOne';
+import Bmw1000rr from './Bmw1000rr';
+import * as THREE from 'three';
+
+
 
 function Model() {
   const { scene, animations } = useGLTF('src/assets/images/sci-fi_uniform_girl_and_animation.glb');
@@ -22,7 +27,13 @@ function Model() {
     }
   }, [mixer, animations]);
 
-  return <primitive object={scene} ref={ref} scale={[0.06, 0.06, 0.06]} />;
+  //reminder to turn this origin verision into a component to follow the established pattern
+  return <primitive 
+  object={scene} 
+  ref={ref} 
+  scale={[0.06, 0.06, 0.06]}
+  position={[1, 0.3, 1]}
+  />;
 }
 
 export default function ModelViewer() {
@@ -33,7 +44,52 @@ export default function ModelViewer() {
     setDialogVisible(!isDialogVisible);
   };
 
+  const animateCameraPosition = (targetPosition:  any, duration = 2000) => {
+    const controls = orbitRef.current as any;
+    if (controls) {
+      const startPosition = new THREE.Vector3().copy(controls.object.position);
+      const endPosition = new THREE.Vector3(...targetPosition);
+      const startTime = Date.now();
+
+      const animate = () => {
+        const currentTime = Date.now();
+        const elapsed = (currentTime - startTime) / duration;
+        
+        if (elapsed < 1) {
+          const nextPosition = new THREE.Vector3().lerpVectors(startPosition, endPosition, elapsed);
+          controls.object.position.copy(nextPosition);
+          controls.update();
+          requestAnimationFrame(animate);
+        } else {
+          controls.object.position.copy(endPosition);
+          controls.update();
+        }
+      };
+      
+      animate();
+    }
+  };
+  
+  const resetCamera = () => {
+    const controls: any = orbitRef.current;
+    if (controls) {
+      const newCameraPosition = new THREE.Vector3(4, 3, 5); // Replace with desired position
+      const newTarget = new THREE.Vector3(0, 0, 0); // Replace with desired target
+  
+      // Set the target first
+      controls.target.copy(newTarget);
+      
+      // Then animate the camera to the new position
+      animateCameraPosition(newCameraPosition.toArray());
+      
+      // Ensure the controls are updated after the target change
+      controls.update();
+    }
+  };
+
   return (
+    <div className='model-viewer'> 
+
     <div className="canvas-container">
       <Canvas camera={{ position: [4, 3, 5], fov: 80 }}>
         <Environment />
@@ -43,13 +99,26 @@ export default function ModelViewer() {
           <pointLight position={[-10, -10, -10]} />
           <Model />
           <OrbitControls ref={orbitRef} />
-          <SceneText content="Welcome to My Portfolio" position={[0.5, 3, 1.3]} />
-          <InteractiveButton position={[2, 1, 0]} onToggle={onToggle} isDialogVisible={isDialogVisible} />
+          <SceneText content="Welcome to My Portfolio" position={[0.5, 3.5, 1.3]} />
+          <InteractiveButton                
+                position={[2, .5, 1]} 
+                onToggle={onToggle} 
+                isDialogVisible={isDialogVisible}
+           />
           <FoxModel position={[2, 1, 1]} scale={[1.5, 1.5, 1.5]} />
-          <UmbreonNapping position={[-4, 0, 2]} scale={[.03, .03, .03]}/>
+          <Bmw1000rr position={[2, 1, 1]} scale={[.08, .08, .08]} />
+          <WorldOne position={[-4, 0, 2]} scale={[10, 10, 10]}/>
         </Suspense>
         {isDialogVisible && <DialogBox onClose={onToggle} />}
-      </Canvas>
+      </Canvas>      
+    </div>
+    <div className='overlay-ui'>
+        <button onClick={resetCamera}>Reset Camera</button>
+        <button>button one</button>
+        <button>button one</button>
+
+    </div>
+
     </div>
   );
 }
