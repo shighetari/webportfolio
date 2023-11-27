@@ -1,14 +1,11 @@
-// import { useState } from 'react';
+// src/App.tsx
 import './App.scss';
-import './assets/scss/_components.scss'
 import ModelViewer from './components/ModelViewer';
 
 function App() {
   return (
-    <div className='.canvas-container'>
-      {/* Other components */}
+    <div className='canvas-container'>
       <ModelViewer />
-      {/* Other components */}
     </div>
   );
 }
