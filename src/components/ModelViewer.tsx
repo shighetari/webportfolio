@@ -11,7 +11,11 @@ import '../assets/scss/_components.scss';
 import '../assets/scss/_base.scss';
 import WorldOne from './WorldOne';
 import Bmw1000rr from './Bmw1000rr';
+import SciFiLaptop from './SciFiLaptop';
+import Butterfly from './Butterfly';
 import * as THREE from 'three';
+import Phoenix from './Phoenix';
+import Zen from './Zen';
 
 
 
@@ -44,7 +48,7 @@ export default function ModelViewer() {
     setDialogVisible(!isDialogVisible);
   };
 
-  const animateCameraPosition = (targetPosition:  any, duration = 2000) => {
+  const animateCameraPosition = (targetPosition:  any, duration = 5000) => {
     const controls = orbitRef.current as any;
     if (controls) {
       const startPosition = new THREE.Vector3().copy(controls.object.position);
@@ -91,7 +95,7 @@ export default function ModelViewer() {
     <div className='model-viewer'> 
 
     <div className="canvas-container">
-      <Canvas camera={{ position: [4, 3, 5], fov: 80 }}>
+      <Canvas camera={{ position: [4, 3, 5], fov: 100 }}>
         <Environment />
         <Suspense fallback={null}>
           <ambientLight intensity={0.5} />
@@ -108,6 +112,12 @@ export default function ModelViewer() {
           <FoxModel position={[2, 1, 1]} scale={[1.5, 1.5, 1.5]} />
           <Bmw1000rr position={[2, 1, 1]} scale={[.08, .08, .08]} />
           <WorldOne position={[-4, 0, 2]} scale={[10, 10, 10]}/>
+          <SciFiLaptop position={[1, 1.5, 2]} scale={[1, 1, 1]}/>
+          <Butterfly position={[1, 1, 2]} scale={[.5, .5, .5]}/>
+          <Phoenix position={[12, 17, 2]} scale={[.005, .005, .005]}/>
+          <Zen position={[1.6, 0.4, 0]} scale={[.5, .5, .5]}/>
+
+
         </Suspense>
         {isDialogVisible && <DialogBox onClose={onToggle} />}
       </Canvas>      
