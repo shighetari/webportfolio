@@ -84,9 +84,9 @@ const InteractiveButton: React.FC<InteractiveButtonProps> = ({ position, onToggl
       />
     </mesh>
           <Text
-          position={[2, 2, 1]} // Adjust the position as needed
-          fontSize={0.5}
-          color="#000000" // Text color
+          position={[-2, 2, -1]} // Adjust the position as needed
+          fontSize={.5}
+          color="#dbafe0" // Text color
           anchorX="center" // Horizontal center alignment
           anchorY="middle" // Vertical center alignment
         >
