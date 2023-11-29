@@ -7,15 +7,13 @@ import InteractiveButton from './InteractiveButton';
 import Environment from './Environment';
 import FoxModel from './FoxModel';
 import DialogBox from './DialogBox';
-import '../assets/scss/_components.scss';
-import '../assets/scss/_base.scss';
 import WorldOne from './WorldOne';
 import Bmw1000rr from './Bmw1000rr';
 import SciFiLaptop from './SciFiLaptop';
 import Butterfly from './Butterfly';
 import * as THREE from 'three';
 import Phoenix from './Phoenix';
-import Zen from './Zen';
+// import Zen from './Zen'; //creates weird floating blackspace bug
 import FlyingBook from './FlyingBook';
 import AsianShip from './AsianShip';
 import ITIcons from './ITIcons';
@@ -26,6 +24,12 @@ import KaliLinux from './KaliLinux';
 import Earth from './Earth';
 import HoHo from './HoHo';
 import AnbuMask from './AnbuMask';
+import AnimatedButton from './AnimatedButton';
+import BackgroundMusic from './BackgroundMusic';
+// import ParticlesBackground from './ParticlesBackground';
+/* Styles */
+import '../assets/scss/_components.scss';
+import '../assets/scss/_base.scss';
 
 
 function Model() {
@@ -135,16 +139,20 @@ export default function ModelViewer() {
           <Earth position={[11,-9,10]} scale={[7, 7, 7]} rotation={[0,0,0]}/>
           <HoHo position={[0,-30,0]} scale={[1, 1, 1]} rotation={[0,0,0]}/>
           <AnbuMask position={[3.1,0,0]} scale={[.01, .01, .01]} rotation={[1,0,0]}/>
-
-
         </Suspense>
         {isDialogVisible && <DialogBox onClose={onToggle} />}
+        
       </Canvas>      
     </div>
     <div className='overlay-ui'>
-        <button onClick={resetCamera}>Reset Camera</button>
+        {/* <button onClick={resetCamera}>Reset Camera</button>
         <button>button two</button>
-        <button>button three</button>
+        <button>button three</button> */}
+        
+<AnimatedButton label="Reset Camera" onClick={resetCamera} />
+<AnimatedButton label="Button Two"  onClick={resetCamera}/>
+<AnimatedButton label="Button Three" onClick={resetCamera}/>
+<BackgroundMusic/>
 
     </div>
 

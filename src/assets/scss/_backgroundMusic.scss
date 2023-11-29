@@ -1,0 +1,102 @@
+.play-pause-btn {
+    background: linear-gradient(145deg, rgba(101, 101, 219, 0.2), rgba(212, 83, 161, 0.2)); // More transparent gradient
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 2rem;
+    color: #e20aa1;
+    outline: none;
+    position: relative;
+    overflow: hidden;
+    padding: 1rem;
+    box-shadow: 0 0 10px rgba(147, 112, 219, 0.4), 0 0 20px rgba(147, 112, 219, 0.3), 0 0 30px rgba(147, 112, 219, 0.2); // More transparent glow
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; // Modern font
+
+    &:hover {
+        box-shadow: 0 0 15px rgba(147, 112, 219, 0.6), 0 0 25px rgba(147, 112, 219, 0.5), 0 0 35px rgba(147, 112, 219, 0.4); // Intensified glow on hover
+        transform: scale(1.05);
+    }
+
+    &:active {
+        transform: scale(0.95);
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        bottom: -50%;
+        left: -50%;
+        background: inherit;
+        border-radius: inherit;
+        z-index: -1;
+        animation: rotate 5s linear infinite, glow 5s ease-in-out infinite alternate;
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 10px rgba(147, 112, 219, 0.4), 0 0 20px rgba(147, 112, 219, 0.3), 0 0 30px rgba(147, 112, 219, 0.2);
+    }
+    to {
+        box-shadow: 0 0 15px rgba(147, 112, 219, 0.6), 0 0 25px rgba(147, 112, 219, 0.5), 0 0 35px rgba(147, 112, 219, 0.4);
+    }
+}
+  
+  // Volumne slider
+
+.volume-slider {
+    -webkit-appearance: none;
+    width: 100px; // Width of the slider
+    height: 4px;
+    border-radius: 5px;
+    background: linear-gradient(145deg, rgb(101, 101, 219), rgb(212, 83, 161)); // Gradient to match the button
+    outline: none;
+    opacity: 0.7; // Making the slider slightly transparent
+    transition: opacity .2s;
+  
+    &:hover {
+      opacity: 1; // Fully visible when hovered
+    }
+  
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 15px; // Width of the thumb
+      height: 15px; // Height of the thumb
+      border-radius: 50%;
+      background: #dd0202; // Thumb color
+      cursor: pointer;
+    }
+  
+    &::-moz-range-thumb {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: #fff;
+      cursor: pointer;
+    }
+  }
+  
+  .volume-icon {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 1.5rem;
+    vertical-align: middle;
+    color: #fff;
+  
+    svg {
+      transition: color 0.2s;
+    }
+  }
