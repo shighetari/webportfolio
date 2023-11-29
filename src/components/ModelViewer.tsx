@@ -16,7 +16,16 @@ import Butterfly from './Butterfly';
 import * as THREE from 'three';
 import Phoenix from './Phoenix';
 import Zen from './Zen';
-
+import FlyingBook from './FlyingBook';
+import AsianShip from './AsianShip';
+import ITIcons from './ITIcons';
+import MobyDocker from './MobyDocker';
+import WebDevLaptop from './WebDevLaptop';
+import HelloWorldPython from './HelloWorldPython';
+import KaliLinux from './KaliLinux';
+import Earth from './Earth';
+import HoHo from './HoHo';
+import AnbuMask from './AnbuMask';
 
 
 function Model() {
@@ -48,7 +57,7 @@ export default function ModelViewer() {
     setDialogVisible(!isDialogVisible);
   };
 
-  const animateCameraPosition = (targetPosition:  any, duration = 5000) => {
+  const animateCameraPosition = (targetPosition:  any, duration = 3000) => {
     const controls = orbitRef.current as any;
     if (controls) {
       const startPosition = new THREE.Vector3().copy(controls.object.position);
@@ -105,17 +114,27 @@ export default function ModelViewer() {
           <OrbitControls ref={orbitRef} />
           <SceneText content="Welcome to My Portfolio" position={[0.5, 3.5, 1.3]} />
           <InteractiveButton                
-                position={[2, .5, 1]} 
+                position={[-2, .5, -1]} 
                 onToggle={onToggle} 
                 isDialogVisible={isDialogVisible}
            />
           <FoxModel position={[2, 1, 1]} scale={[1.5, 1.5, 1.5]} />
-          <Bmw1000rr position={[2, 1, 1]} scale={[.08, .08, .08]} />
-          <WorldOne position={[-4, 0, 2]} scale={[10, 10, 10]}/>
-          <SciFiLaptop position={[1, 1.5, 2]} scale={[1, 1, 1]}/>
-          <Butterfly position={[1, 1, 2]} scale={[.5, .5, .5]}/>
+          <Bmw1000rr position={[2, .9, 1]} scale={[.08, .08, .08]} />
+          <WorldOne position={[-4, 0, 2]} scale={[20, 20, 20]}/>
+          <SciFiLaptop position={[-5, 0, 2]} scale={[.001, .001, .001]}/>
+          <Butterfly position={[5, 5, 0]} scale={[.5, .5, .5]}/>
           <Phoenix position={[12, 17, 2]} scale={[.005, .005, .005]}/>
-          <Zen position={[1.6, 0.4, 0]} scale={[.5, .5, .5]}/>
+          {/* <Zen position={[1.6, 0.4, 0]} scale={[.5, .5, .5]}/> */}
+          <FlyingBook position={[3, 2, 2]} scale={[.001, .001, .001]}/>
+          <AsianShip position={[0, -20, 20]} scale={[10, 10, 10]}/>
+          <ITIcons position={[2, 1, -9]} scale={[.5, .5, .5]} rotation={[1, 4.8, 0]}/>
+          <MobyDocker position={[10, -4,20]} scale={[2, 2, 2]} rotation={[0,0,0]}/>
+          <WebDevLaptop position={[-2,-.5, 1]} scale={[.3, .3, .3]} rotation={[0,0,0]}/>
+          <HelloWorldPython position={[5,3, -1]} scale={[.3, .3, .3]} rotation={[0,0,0]}/>
+          <KaliLinux position={[-9,3,1]} scale={[.1, .1, .1]} rotation={[0,1,0]}/>
+          <Earth position={[11,-9,10]} scale={[7, 7, 7]} rotation={[0,0,0]}/>
+          <HoHo position={[0,-30,0]} scale={[1, 1, 1]} rotation={[0,0,0]}/>
+          <AnbuMask position={[3.1,0,0]} scale={[.01, .01, .01]} rotation={[1,0,0]}/>
 
 
         </Suspense>
@@ -124,8 +143,8 @@ export default function ModelViewer() {
     </div>
     <div className='overlay-ui'>
         <button onClick={resetCamera}>Reset Camera</button>
-        <button>button one</button>
-        <button>button one</button>
+        <button>button two</button>
+        <button>button three</button>
 
     </div>
 

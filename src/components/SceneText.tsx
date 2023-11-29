@@ -19,7 +19,7 @@ const SceneText: React.FC<SceneTextProps> = ({ content, position }) => {
   });
 
   return (
-    <Text ref={textRef} position={position} fontSize={0.5} color="#000000">
+    <Text ref={textRef} position={position} fontSize={0.5} color="#dbafe0">
       {content}
     </Text>
   );
