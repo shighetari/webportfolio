@@ -7,60 +7,95 @@
   overflow: hidden;
 }
 
+/* Dialog Box */
 .dialog-box {
-  background: #ffffff;
-  border-radius: 15px;
-  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
-  padding: 30px;
-  width: auto;
-  max-width: 400px; // Adjust the width as necessary
-  text-align: center;
-  font-family: 'Arial', sans-serif; // Choose a font that matches your style
-  position: relative;
-  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.3); // Semi-transparent white background
+  border-radius: 15px; // Soft rounded corners
+  box-shadow: 
+    0 8px 32px 0 rgba(31, 38, 135, 0.37), // Soft glow effect
+    inset 0 4px 4px 0 rgba(255, 255, 255, 0.2); // Subtle inner highlight
+  backdrop-filter: blur(4px); // Soft background blur effect
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.18); // Light border for subtle definition
+  padding: 9rem; // Spacious padding for a better layout
+  width: 80%; // Responsive width
+  max-width: 600px; // Max width for larger screens
+  text-align: center; // Center-align the text
+  font-family: 'Open Sans', sans-serif; // Modern, clean font-family
+  position: fixed; // Fixed position to stay in view
   top: 50%;
   left: 50%;
-  transition: transform 0.3s ease-out;
+  transform: translate(-50%, -50%);
+  z-index: 1000; // High z-index to stay on top
+  transition: all 0.3s ease-in-out; // Smooth transition for all properties
+  visibility: hidden; // Start hidden
+  opacity: 0; // Start transparent
+  &.visible {
+    visibility: visible; // Make visible
+    opacity: 1; // Opaque
+    transform: translate(-50%, -50%) scale(1); // Scale to normal size for attention
+  }
 }
 
 .dialog-box .dialog-content {
-  color: #333; // A dark grey for better readability
-  font-size: 18px;
-  margin-bottom: 20px;
+  color: #333; // Dark grey for readability
+  font-size: 1rem; // Standard font size
+  margin-bottom: 1rem; // Space between text and button
 }
 
 .dialog-box button {
-  background-color: #007bff;
+  background-color: #007bff; // Primary button color
   border: none;
-  border-radius: 5px;
+  border-radius: 25px; // Fully rounded edges for buttons
   color: #ffffff;
-  padding: 12px 24px;
-  font-size: 16px;
-  font-weight: bold;
+  padding: 0.75rem 1.5rem; // Generous padding for clickability
+  font-size: 1rem;
+  font-weight: bold; // Bold text for importance
   cursor: pointer;
   outline: none;
-  transition: background-color 0.2s ease-out, transform 0.1s ease;
-  will-change: transform;
+  transition: all 0.2s; // Smooth transition for interaction
+  &:hover {
+    background-color: #0056b3; // Darken button on hover for feedback
+  }
+  &:active {
+    transform: translateY(2px); // Push effect on click
+  }
 }
 
-.dialog-box button:hover {
-  background-color: #0056b3;
-}
-
-.dialog-box button:active {
-  transform: translateY(2px);
-}
-
-/* Add a close icon */
 .close-icon {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 1rem;
+  right: 1rem;
   cursor: pointer;
-  color: #aaa;
+  color: #aab8c2; // A neutral color for the close icon
   transition: color 0.2s;
+  &:hover {
+    color: #333; // Darken icon on hover for feedback
+  }
+  &:before {
+    content: '\00d7'; // Using the multiplication sign as a close icon
+    font-size: 1rem;
+  }
 }
 
-.close-icon:hover {
-  color: #333;
+.social-icons {
+  display: flex; // Use flexbox for layout
+  justify-content: center; // Center the icons horizontally
+  align-items: center; // Align the icons vertically
+  margin-top: 1rem; // Space from the dialog content
+  a {
+    color: #333; // Icon color
+    margin: 0 1rem; // Space between icons
+    font-size: 2rem; // Large icons for easy interaction
+    transition: color 0.2s;
+    &:hover {
+      color: #007bff; // Highlight icon color on hover
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .dialog-box {
+    font-size: 1.125rem; // Slightly larger text on bigger screens
+  }
 }

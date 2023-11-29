@@ -26,6 +26,7 @@ import HoHo from './HoHo';
 import AnbuMask from './AnbuMask';
 import AnimatedButton from './AnimatedButton';
 import BackgroundMusic from './BackgroundMusic';
+import ContactButton from './ContactButton';
 // import ParticlesBackground from './ParticlesBackground';
 /* Styles */
 import '../assets/scss/_components.scss';
@@ -54,6 +55,7 @@ function Model() {
 }
 
 export default function ModelViewer() {
+  //Camera Controlls
   const orbitRef = useRef(null);
   const [isDialogVisible, setDialogVisible] = useState(false);
 
@@ -104,6 +106,24 @@ export default function ModelViewer() {
     }
   };
 
+  // Button misc
+  const onToggleContact = () => {
+    console.log('Toggling dialog visibility');
+    if (isDialogVisible) {
+      // Start the fade-out animation
+      const dialogBox = document.querySelector('.dialog-box');
+      if (dialogBox) {
+        dialogBox.classList.remove('visible');
+      }
+      // Wait for the animation to finish before hiding the dialog box
+      setTimeout(() => {
+        setDialogVisible(false);
+      }, 300); // The timeout should match the CSS transition duration
+    } else {
+      // Show the dialog box
+      setDialogVisible(true);
+    }
+  };
   return (
     <div className='model-viewer'> 
 
@@ -140,7 +160,9 @@ export default function ModelViewer() {
           <HoHo position={[0,-30,0]} scale={[1, 1, 1]} rotation={[0,0,0]}/>
           <AnbuMask position={[3.1,0,0]} scale={[.01, .01, .01]} rotation={[1,0,0]}/>
         </Suspense>
-        {isDialogVisible && <DialogBox onClose={onToggle} />}
+        
+        <DialogBox onClose={onToggleContact} isVisible={isDialogVisible} />
+        {/* {isDialogVisible && <DialogBox onClose={onToggleContact} isVisible={isDialogVisible} />} */}
         
       </Canvas>      
     </div>
@@ -153,6 +175,7 @@ export default function ModelViewer() {
 <AnimatedButton label="Button Two"  onClick={resetCamera}/>
 <AnimatedButton label="Button Three" onClick={resetCamera}/>
 <BackgroundMusic/>
+<ContactButton onClick={onToggleContact} />
 
     </div>
 
