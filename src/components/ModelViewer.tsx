@@ -31,6 +31,11 @@ import ContactButton from './ContactButton';
 /* Styles */
 import '../assets/scss/_components.scss';
 import '../assets/scss/_base.scss';
+import ArchLinux from './ArchLinux';
+import GNULinux from './GNULinux';
+import HdriAnimeJungle from './HdriAnimeJungle';
+import MechaWep from './mechaWep';
+import Mew from './Mew';
 
 
 function Model() {
@@ -63,7 +68,7 @@ export default function ModelViewer() {
     setDialogVisible(!isDialogVisible);
   };
 
-  const animateCameraPosition = (targetPosition:  any, duration = 3000) => {
+  const animateCameraPosition = (targetPosition:  any, duration = 4000) => {
     const controls = orbitRef.current as any;
     if (controls) {
       const startPosition = new THREE.Vector3().copy(controls.object.position);
@@ -144,7 +149,7 @@ export default function ModelViewer() {
            />
           <FoxModel position={[2, 1, 1]} scale={[1.5, 1.5, 1.5]} />
           <Bmw1000rr position={[2, .9, 1]} scale={[.08, .08, .08]} />
-          <WorldOne position={[-4, 0, 2]} scale={[20, 20, 20]}/>
+          <WorldOne position={[-4, 0, 2]} scale={[15, 15, 15]}/>
           <SciFiLaptop position={[-5, 0, 2]} scale={[.001, .001, .001]}/>
           <Butterfly position={[5, 5, 0]} scale={[.5, .5, .5]}/>
           <Phoenix position={[12, 17, 2]} scale={[.005, .005, .005]}/>
@@ -156,9 +161,16 @@ export default function ModelViewer() {
           <WebDevLaptop position={[-2,-.5, 1]} scale={[.3, .3, .3]} rotation={[0,0,0]}/>
           <HelloWorldPython position={[5,3, -1]} scale={[.3, .3, .3]} rotation={[0,0,0]}/>
           <KaliLinux position={[-9,3,1]} scale={[.1, .1, .1]} rotation={[0,1,0]}/>
-          <Earth position={[11,-9,10]} scale={[7, 7, 7]} rotation={[0,0,0]}/>
-          <HoHo position={[0,-30,0]} scale={[1, 1, 1]} rotation={[0,0,0]}/>
+          <Earth position={[11,-9,10]} scale={[200, 200, 200]} rotation={[0,0,0]}/>
+          <HoHo position={[0,30,0]} scale={[.3, .3, .3]} rotation={[0,0,0]}/>
           <AnbuMask position={[3.1,0,0]} scale={[.01, .01, .01]} rotation={[1,0,0]}/>
+          <ArchLinux position={[1, 10, 30]} scale={[1, 1, 1]}/>
+          <GNULinux position={[1, 20, -30]} scale={[.3, .3, .3]}/>
+          <HdriAnimeJungle position={[1, 1, 1]} scale={[120, 120, 120]}/>
+          <MechaWep position={[-300, 1, 100]} scale={[200, 200, 200]} rotation={[0,1,0]}/>
+          <Mew position={[200, 400, 500]} scale={[1000, 1000, 1000]} rotation={[0,2,0]}/>
+
+
         </Suspense>
         
         <DialogBox onClose={onToggleContact} isVisible={isDialogVisible} />
