@@ -4,7 +4,7 @@ import '../assets/scss/_animatedButton.scss';
 
 interface AnimatedButtonProps {
   label: string;
-  onClick: () => void;
+  onClick: any;
 }
 
 const AnimatedButton: React.FC<AnimatedButtonProps> = ({ label, onClick }) => {

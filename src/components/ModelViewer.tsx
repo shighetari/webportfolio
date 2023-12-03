@@ -1,3 +1,8 @@
+/* Styles */
+import '../assets/scss/_components.scss';
+import '../assets/scss/_base.scss';
+import '../assets/scss/_layout.scss';
+/* ~~~~~ */
 import React, { Suspense, useRef, useState, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, useGLTF, useAnimations } from '@react-three/drei';
@@ -26,10 +31,15 @@ import HoHo from './HoHo';
 import AnbuMask from './AnbuMask';
 import AnimatedButton from './AnimatedButton';
 import BackgroundMusic from './BackgroundMusic';
+import ContactButton from './ContactButton';
 // import ParticlesBackground from './ParticlesBackground';
-/* Styles */
-import '../assets/scss/_components.scss';
-import '../assets/scss/_base.scss';
+import ArchLinux from './ArchLinux';
+import GNULinux from './GNULinux';
+import HdriAnimeJungle from './HdriAnimeJungle';
+import MechaWep from './mechaWep';
+import Mew from './Mew';
+import { ChatBox } from './ChatBox';
+import { AIDialogBox } from './AIDialogBox';
 
 
 function Model() {
@@ -45,15 +55,16 @@ function Model() {
   }, [mixer, animations]);
 
   //reminder to turn this origin verision into a component to follow the established pattern
-  return <primitive 
-  object={scene} 
-  ref={ref} 
-  scale={[0.06, 0.06, 0.06]}
-  position={[1, 0.3, 1]}
+  return <primitive
+    object={scene}
+    ref={ref}
+    scale={[0.06, 0.06, 0.06]}
+    position={[1, 0.3, 1]}
   />;
 }
 
 export default function ModelViewer() {
+  //Camera Controlls
   const orbitRef = useRef(null);
   const [isDialogVisible, setDialogVisible] = useState(false);
 
@@ -61,7 +72,7 @@ export default function ModelViewer() {
     setDialogVisible(!isDialogVisible);
   };
 
-  const animateCameraPosition = (targetPosition:  any, duration = 3000) => {
+  const animateCameraPosition = (targetPosition: any, duration = 4000) => {
     const controls = orbitRef.current as any;
     if (controls) {
       const startPosition = new THREE.Vector3().copy(controls.object.position);
@@ -71,7 +82,7 @@ export default function ModelViewer() {
       const animate = () => {
         const currentTime = Date.now();
         const elapsed = (currentTime - startTime) / duration;
-        
+
         if (elapsed < 1) {
           const nextPosition = new THREE.Vector3().lerpVectors(startPosition, endPosition, elapsed);
           controls.object.position.copy(nextPosition);
@@ -82,80 +93,115 @@ export default function ModelViewer() {
           controls.update();
         }
       };
-      
+
       animate();
     }
   };
-  
+
   const resetCamera = () => {
     const controls: any = orbitRef.current;
     if (controls) {
       const newCameraPosition = new THREE.Vector3(4, 3, 5); // Replace with desired position
       const newTarget = new THREE.Vector3(0, 0, 0); // Replace with desired target
-  
+
       // Set the target first
       controls.target.copy(newTarget);
-      
+
       // Then animate the camera to the new position
       animateCameraPosition(newCameraPosition.toArray());
-      
+
       // Ensure the controls are updated after the target change
       controls.update();
     }
   };
 
-  return (
-    <div className='model-viewer'> 
+  // Button misc
+  const onToggleContact = () => {
+    if (isDialogVisible) {
+      // Start the fade-out animation
+      const dialogBox = document.querySelector('.dialog-box');
+      if (dialogBox) {
+        dialogBox.classList.remove('visible');
+      }
+      // Wait for the animation to finish before hiding the dialog box
+      setTimeout(() => {
+        setDialogVisible(false);
+      }, 300); // The timeout should match the CSS transition duration
+    } else {
+      // Show the dialog box
+      setDialogVisible(true);
+    }
+  };
 
-    <div className="canvas-container">
-      <Canvas camera={{ position: [4, 3, 5], fov: 100 }}>
-        <Environment />
-        <Suspense fallback={null}>
-          <ambientLight intensity={0.5} />
-          <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
-          <pointLight position={[-10, -10, -10]} />
-          <Model />
-          <OrbitControls ref={orbitRef} />
-          <SceneText content="Welcome to My Portfolio" position={[0.5, 3.5, 1.3]} />
-          <InteractiveButton                
-                position={[-2, .5, -1]} 
-                onToggle={onToggle} 
-                isDialogVisible={isDialogVisible}
-           />
-          <FoxModel position={[2, 1, 1]} scale={[1.5, 1.5, 1.5]} />
-          <Bmw1000rr position={[2, .9, 1]} scale={[.08, .08, .08]} />
-          <WorldOne position={[-4, 0, 2]} scale={[20, 20, 20]}/>
-          <SciFiLaptop position={[-5, 0, 2]} scale={[.001, .001, .001]}/>
-          <Butterfly position={[5, 5, 0]} scale={[.5, .5, .5]}/>
-          <Phoenix position={[12, 17, 2]} scale={[.005, .005, .005]}/>
-          {/* <Zen position={[1.6, 0.4, 0]} scale={[.5, .5, .5]}/> */}
-          <FlyingBook position={[3, 2, 2]} scale={[.001, .001, .001]}/>
-          <AsianShip position={[0, -20, 20]} scale={[10, 10, 10]}/>
-          <ITIcons position={[2, 1, -9]} scale={[.5, .5, .5]} rotation={[1, 4.8, 0]}/>
-          <MobyDocker position={[10, -4,20]} scale={[2, 2, 2]} rotation={[0,0,0]}/>
-          <WebDevLaptop position={[-2,-.5, 1]} scale={[.3, .3, .3]} rotation={[0,0,0]}/>
-          <HelloWorldPython position={[5,3, -1]} scale={[.3, .3, .3]} rotation={[0,0,0]}/>
-          <KaliLinux position={[-9,3,1]} scale={[.1, .1, .1]} rotation={[0,1,0]}/>
-          <Earth position={[11,-9,10]} scale={[7, 7, 7]} rotation={[0,0,0]}/>
-          <HoHo position={[0,-30,0]} scale={[1, 1, 1]} rotation={[0,0,0]}/>
-          <AnbuMask position={[3.1,0,0]} scale={[.01, .01, .01]} rotation={[1,0,0]}/>
-        </Suspense>
-        {isDialogVisible && <DialogBox onClose={onToggle} />}
-        
-      </Canvas>      
-    </div>
-    <div className='overlay-ui'>
+  /* AI Chatbot state logic */
+
+  const [isChatVisible, setChatVisible] = useState(false);
+
+  const toggleChatDialog = () => {
+    setChatVisible(!isChatVisible);
+  };
+
+  return (
+    <div className='model-viewer'>
+
+      <div className="canvas-container">
+        <Canvas camera={{ position: [4, 3, 5], fov: 100 }}>
+          <Environment />          
+          <Suspense fallback={null}>            
+            <ambientLight intensity={0.5} />
+            <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
+            <pointLight position={[-10, -10, -10]} />
+            <Model />
+            <OrbitControls ref={orbitRef} />
+            <SceneText content="Welcome to My Portfolio" position={[0.5, 3.5, 1.3]} />
+            <InteractiveButton
+              position={[-2, .5, -1]}
+              onToggle={onToggle}
+              isDialogVisible={isDialogVisible}
+            />
+            <FoxModel position={[2, 1, 1]} scale={[1.5, 1.5, 1.5]} />
+            <Bmw1000rr position={[2, .9, 1]} scale={[.08, .08, .08]} />
+            <WorldOne position={[-4, 0, 2]} scale={[15, 15, 15]} />
+            <SciFiLaptop position={[-5, 0, 2]} scale={[.001, .001, .001]} />
+            <Butterfly position={[5, 5, 0]} scale={[.5, .5, .5]} />
+            <Phoenix position={[12, 17, 2]} scale={[.005, .005, .005]} />
+            {/* <Zen position={[1.6, 0.4, 0]} scale={[.5, .5, .5]}/> */}
+            <FlyingBook position={[3, 2, 2]} scale={[.001, .001, .001]} />
+            <AsianShip position={[0, -20, 20]} scale={[10, 10, 10]} />
+            <ITIcons position={[2, 1, -9]} scale={[.5, .5, .5]} rotation={[1, 4.8, 0]} />
+            <MobyDocker position={[10, -4, 20]} scale={[2, 2, 2]} rotation={[0, 0, 0]} />
+            <WebDevLaptop position={[-2, -.5, 1]} scale={[.3, .3, .3]} rotation={[0, 0, 0]} />
+            <HelloWorldPython position={[5, 3, -1]} scale={[.3, .3, .3]} rotation={[0, 0, 0]} />
+            <KaliLinux position={[-9, 3, 1]} scale={[.1, .1, .1]} rotation={[0, 1, 0]} />
+            <Earth position={[11, -9, 10]} scale={[200, 200, 200]} rotation={[0, 0, 0]} />
+            <HoHo position={[0, 30, 0]} scale={[.3, .3, .3]} rotation={[0, 0, 0]} />
+            <AnbuMask position={[3.1, 0, 0]} scale={[.01, .01, .01]} rotation={[1, 0, 0]} />
+            <ArchLinux position={[1, 10, 30]} scale={[1, 1, 1]} />
+            <GNULinux position={[1, 20, -30]} scale={[.3, .3, .3]} />
+            <HdriAnimeJungle position={[1, 1, 1]} scale={[120, 120, 120]} />
+            <MechaWep position={[-300, 1, 100]} scale={[200, 200, 200]} rotation={[0, 1, 0]} />
+            <Mew position={[200, 400, 500]} scale={[1000, 1000, 1000]} rotation={[0, 2, 0]} />
+          </Suspense>
+
+          <DialogBox onClose={onToggleContact} isVisible={isDialogVisible} />
+          {/* {isDialogVisible && <DialogBox onClose={onToggleContact} isVisible={isDialogVisible} />} */}
+
+        </Canvas>
+      </div>
+      <div className='overlay-ui'>
         {/* <button onClick={resetCamera}>Reset Camera</button>
         <button>button two</button>
         <button>button three</button> */}
-        
-<AnimatedButton label="Reset Camera" onClick={resetCamera} />
-<AnimatedButton label="Button Two"  onClick={resetCamera}/>
-<AnimatedButton label="Button Three" onClick={resetCamera}/>
-<BackgroundMusic/>
 
-    </div>
-
+        <AnimatedButton label="Reset Camera" onClick={resetCamera} />
+        <AnimatedButton label="Dev Alpha 1.0" onClick={undefined} />
+        <AnimatedButton label="AI Assistant" onClick={toggleChatDialog} />
+        <BackgroundMusic />
+        <ContactButton onClick={onToggleContact} />
+        <AIDialogBox isVisible={isChatVisible} onClose={toggleChatDialog}>
+        <ChatBox />
+      </AIDialogBox>
+      </div>
     </div>
   );
 }

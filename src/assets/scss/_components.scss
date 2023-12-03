@@ -1,3 +1,14 @@
+:root {
+  --primary-color: #007bff;
+  --hover-primary-color: #0056b3;
+  --text-color: #333;
+  --icon-color: #aab8c2;
+  --hover-icon-color: #333;
+  --background-color: rgba(255, 255, 255, 0.3);
+  --border-radius: 15px;
+  --button-border-radius: 25px;
+}
+
 .canvas-container {
   position: fixed;
   top: 0;
@@ -8,59 +19,91 @@
 }
 
 .dialog-box {
-  background: #ffffff;
-  border-radius: 15px;
-  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
-  padding: 30px;
-  width: auto;
-  max-width: 400px; // Adjust the width as necessary
+  background: var(--background-color);
+  border-radius: var(--border-radius);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37), inset 0 4px 4px 0 rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 9rem;
+  width: 80%;
+  max-width: 600px;
   text-align: center;
-  font-family: 'Arial', sans-serif; // Choose a font that matches your style
-  position: relative;
-  transform: translate(-50%, -50%);
+  font-family: 'Open Sans', sans-serif;
+  position: fixed;
   top: 50%;
   left: 50%;
-  transition: transform 0.3s ease-out;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  transition: all 0.3s ease-in-out;
+  visibility: hidden;
+  opacity: 0;
+  &.visible {
+    visibility: visible;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
 }
 
 .dialog-box .dialog-content {
-  color: #333; // A dark grey for better readability
-  font-size: 18px;
-  margin-bottom: 20px;
+  color: var(--text-color);
+  font-size: 1rem;
+  margin-bottom: 1rem;
 }
 
 .dialog-box button {
-  background-color: #007bff;
+  background-color: var(--primary-color);
   border: none;
-  border-radius: 5px;
+  border-radius: var(--button-border-radius);
   color: #ffffff;
-  padding: 12px 24px;
-  font-size: 16px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
   outline: none;
-  transition: background-color 0.2s ease-out, transform 0.1s ease;
-  will-change: transform;
+  transition: all 0.2s;
+  &:hover {
+    background-color: var(--hover-primary-color);
+  }
+  &:active {
+    transform: translateY(2px);
+  }
 }
 
-.dialog-box button:hover {
-  background-color: #0056b3;
-}
-
-.dialog-box button:active {
-  transform: translateY(2px);
-}
-
-/* Add a close icon */
 .close-icon {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 1rem;
+  right: 1rem;
   cursor: pointer;
-  color: #aaa;
+  color: var(--icon-color);
   transition: color 0.2s;
+  &:hover {
+    color: var(--hover-icon-color);
+  }
+  &:before {
+    content: '\00d7';
+    font-size: 1rem;
+  }
 }
 
-.close-icon:hover {
-  color: #333;
+.social-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  a {
+    color: var(--text-color);
+    margin: 0 1rem;
+    font-size: 2rem;
+    transition: color 0.2s;
+    &:hover {
+      color: var(--primary-color);
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .dialog-box {
+    font-size: 1.125rem;
+  }
 }

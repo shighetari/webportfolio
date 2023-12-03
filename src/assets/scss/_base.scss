@@ -1,19 +1,54 @@
-// # Base styles
+// // # Base styles
+// .model-viewer {
+//     position: relative;
+  
+//     .overlay-ui {
+//       position: absolute;
+//       top: 0; // Adjust as needed
+//       right: 0; // Adjust as needed
+//       display: flex;
+//       flex-direction: column;
+//       padding: 10px;
+//       z-index: 10; // Ensure it's above the canvas
+  
+//       button {
+//         margin: 5px;
+//         // Additional button styling
+//       }
+//     }
+// }
+
+/* Define CSS Variables */
+:root {
+  --spacing-small: 5px;
+  --spacing-medium: 10px;
+  --z-index-overlay: 10;
+}
+
+/* Base styles with mobile-first approach */
 .model-viewer {
-    position: relative;
-  
-    .overlay-ui {
-      position: absolute;
-      top: 0; // Adjust as needed
-      right: 0; // Adjust as needed
-      display: flex;
-      flex-direction: column;
-      padding: 10px;
-      z-index: 10; // Ensure it's above the canvas
-  
-      button {
-        margin: 5px;
-        // Additional button styling
-      }
-    }
+  position: relative;
+}
+
+.model-viewer .overlay-ui {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-medium);
+  z-index: var(--z-index-overlay);
+}
+
+.model-viewer .overlay-ui button {
+  margin: var(--spacing-small);
+  /* Additional button styling */
+}
+
+/* Media Queries for larger screens (e.g., tablets, desktops) */
+@media (min-width: 768px) {
+  .model-viewer .overlay-ui {
+    /* Adjust styles for larger screens */
+    flex-direction: row; /* Example change */
+  }
 }

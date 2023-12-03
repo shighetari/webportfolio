@@ -1,45 +1,64 @@
-// src/assets/scss/_animatedButton.scss
+// Define variables for colors and sizes for easy maintenance
+$button-lavender: rgba(183, 155, 255, 0.7);
+$button-lavender-light: rgba(183, 155, 255, 0.3);
+$button-lavender-glow: rgba(183, 155, 255, 0.5);
+$button-hover-opacity: 0.8;
+$button-active-scale: 0.95;
+$button-font-size: 1rem;
+$button-padding: 10px 20px;
+$hover-effect-size: 300%;
+
+// Mixin for reusable box-shadow styles
+@mixin box-shadow($shadow) {
+  box-shadow: $shadow;
+}
+
 .animated-button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: rgba(183, 155, 255, 0.7); // Lavender color with transparency
-    color: white;
-    cursor: pointer;
-    outline: none;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-    font-size: 1rem;
-    font-weight: bold;
-    box-shadow: 0 0 0 0 rgba(183, 155, 255, 0); // Initial box-shadow set to transparent
+  padding: $button-padding;
+  border: none;
+  border-radius: 5px;
+  background-color: $button-lavender;
+  color: white;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  font-size: $button-font-size;
+  font-weight: bold;
+  @include box-shadow(0 0 0 0 transparentize($button-lavender, 1)); // Use mixin
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: $hover-effect-size;
+    height: $hover-effect-size;
+    background-color: $button-lavender-light;
+    transition: all 0.5s ease;
+    display: block;
+    transform: translate(-50%, -50%) scale(0);
+    border-radius: 50%;
+    z-index: 0;
+  }
+
+  &:hover {
+    color: #fff;
+    background-color: rgba(183, 155, 255, $button-hover-opacity);
+    @include box-shadow(0 4px 15px $button-lavender-glow);
     &:before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 300%;
-      height: 300%;
-      background-color: rgba(183, 155, 255, 0.3); // Lighter lavender for the ripple effect
-      transition: all 0.5s ease;
-      display: block;
-      transform: translate(-50%, -50%) scale(0);
-      border-radius: 50%;
-      z-index: 0;
-    }
-    
-    &:hover:before {
       transform: translate(-50%, -50%) scale(1);
     }
-  
-    &:hover {
-      color: #fff;
-      background-color: rgba(183, 155, 255, 0.8); // Slightly less transparent on hover
-      box-shadow: 0 4px 15px rgba(183, 155, 255, 0.5); // Ambient glow effect
-    }
-  
-    &:active {
-      transform: scale(0.95);
-    }
   }
-  
+
+  &:active {
+    transform: scale($button-active-scale);
+  }
+
+  // Responsive design: Adjust font-size and padding for smaller screens
+  @media (max-width: 600px) {
+    font-size: calc(#{$button-font-size} - 0.1rem);
+    padding: calc(#{$button-padding} / 1.5);
+  }
+}
