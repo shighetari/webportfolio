@@ -11,7 +11,7 @@ interface ArchLinuxProps {
   
 
   const ArchLinux: React.FC<ArchLinuxProps> = ({ position = [0, 0, 0], scale = [1, 1, 1], rotation = [0, 0, 0] }) => {
-  const { scene, animations } = useGLTF('src/assets/images/arch_linux_logo.glb');
+  const { scene, animations } = useGLTF('/images/arch_linux_logo.glb');
   const { ref, mixer } = useAnimations(animations, scene);
 
   useEffect(() => {

@@ -11,7 +11,7 @@ interface MechaWepProps {
   
 
   const MechaWep: React.FC<MechaWepProps> = ({ position = [0, 0, 0], scale = [1, 1, 1], rotation = [0, 0, 0] }) => {
-  const { scene, animations } = useGLTF('src/assets/images/mecha_lord_ramen_retopo_weapon_and_rig_preview.glb');
+  const { scene, animations } = useGLTF('/images/mecha_lord_ramen_retopo_weapon_and_rig_preview.glb');
   const { ref, mixer } = useAnimations(animations, scene);
 
   useEffect(() => {

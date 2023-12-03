@@ -9,7 +9,7 @@ interface ZenProps {
 }
 
 const Zen: React.FC<ZenProps> = ({ position = [0, 0, 0], scale = [1, 1, 1] }) => {
-  const { scene, animations } = useGLTF('src/assets/images/interdimensional_zen_gallery_space.glb');
+  const { scene, animations } = useGLTF('/images/interdimensional_zen_gallery_space.glb');
   const { ref, mixer } = useAnimations(animations, scene);
 
   useEffect(() => {

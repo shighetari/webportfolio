@@ -9,7 +9,7 @@ interface AsianShipProps {
 }
 
 const AsianShip: React.FC<AsianShipProps> = ({ position = [0, 0, 0], scale = [1, 1, 1] }) => {
-  const { scene, animations } = useGLTF('src/assets/images/asian_pirate_ship.glb');
+  const { scene, animations } = useGLTF('/images/asian_pirate_ship.glb');
   const { ref, mixer } = useAnimations(animations, scene);
 
   useEffect(() => {

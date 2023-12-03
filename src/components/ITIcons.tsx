@@ -11,7 +11,7 @@ interface ITIconsProps {
   
 
   const ITIcons: React.FC<ITIconsProps> = ({ position = [0, 0, 0], scale = [1, 1, 1], rotation = [0, 0, 0] }) => {
-  const { scene, animations } = useGLTF('src/assets/images/it_icons_pack.glb');
+  const { scene, animations } = useGLTF('/images/it_icons_pack.glb');
   const { ref, mixer } = useAnimations(animations, scene);
 
   useEffect(() => {

@@ -6,8 +6,8 @@ extend({ RGBELoader });
 
 const Environment = () => {
   const { scene, gl } = useThree();
-//   const texture = useLoader(RGBELoader, 'src/assets/images/hdrbublesky.hdr');
-const texture = useLoader(RGBELoader, 'src/assets/images/animestyled_hdr.hdr');
+//   const texture = useLoader(RGBELoader, '/images/hdrbublesky.hdr');
+const texture = useLoader(RGBELoader, '/images/animestyled_hdr.hdr');
 
   texture.mapping = THREE.EquirectangularReflectionMapping;
   scene.environment = texture;

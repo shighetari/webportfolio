@@ -1,9 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import { sendPromptToAssistant } from "../services/AssistantService";
 import "../assets/scss/_ChatBox.scss";
-import userIcon from "../assets/icons/kalilinux-svgrepo-com.svg"; // Replace with your actual file path
-import assistantIcon from "../assets/icons/linux-tux-svgrepo-com.svg"; // Replace with your actual file path
-import messageIcon from "../assets/icons/arch-linux-svgrepo-com(2).svg"; // Replace with your actual file path
+// import userIcon from "../assets/icons/kalilinux-svgrepo-com.svg"; // Replace with your actual file path
+import userIcon from "/icons/kalilinux-svgrepo-com.svg"; // Replace with your actual file path
+// import assistantIcon from "../assets/icons/linux-tux-svgrepo-com.svg"; // Replace with your actual file path
+import assistantIcon from "/icons/linux-tux-svgrepo-com.svg"; // Replace with your actual file path
+// import messageIcon from "../assets/icons/arch-linux-svgrepo-com(2).svg"; // Replace with your actual file path
+import messageIcon from "/icons/arch-linux-svgrepo-com(2).svg"; // Replace with your actual file path
+
 
 interface TextContent {
   type: string;

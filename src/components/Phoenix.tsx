@@ -9,7 +9,7 @@ interface PhoenixProps {
 }
 
 const Phoenix: React.FC<PhoenixProps> = ({ position = [0, 0, 0], scale = [1, 1, 1] }) => {
-  const { scene, animations } = useGLTF('src/assets/images/phoenix_bird.glb');
+  const { scene, animations } = useGLTF('/images/phoenix_bird.glb');
   const { ref, mixer } = useAnimations(animations, scene);
 
   useEffect(() => {

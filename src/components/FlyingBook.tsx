@@ -9,7 +9,7 @@ interface FlyingBookProps {
 }
 
 const FlyingBook: React.FC<FlyingBookProps> = ({ position = [0, 0, 0], scale = [1, 1, 1] }) => {
-  const { scene, animations } = useGLTF('src/assets/images/flying_magic_book.glb');
+  const { scene, animations } = useGLTF('/images/flying_magic_book.glb');
   const { ref, mixer } = useAnimations(animations, scene);
 
   useEffect(() => {

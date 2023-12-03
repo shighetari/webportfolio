@@ -4,7 +4,7 @@ import { FaPlay, FaPause, FaVolumeUp, FaVolumeMute } from 'react-icons/fa';
 import '../assets/scss/_backgroundMusic.scss';
 
 const BackgroundMusic = () => {
-  const [audio] = useState(new Audio('src/assets/audio/ReflectedLight.mp3'));
+  const [audio] = useState(new Audio('/audio/ReflectedLight.mp3'));
   const [playing, setPlaying] = useState(false);
   const [volume, setVolume] = useState(0.75); // Default volume level
 

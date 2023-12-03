@@ -9,7 +9,7 @@ interface ButterflyProps {
 }
 
 const Butterfly: React.FC<ButterflyProps> = ({ position = [0, 0, 0], scale = [1, 1, 1] }) => {
-  const { scene, animations } = useGLTF('src/assets/images/animated_butterfly.glb');
+  const { scene, animations } = useGLTF('/images/animated_butterfly.glb');
   const { ref, mixer } = useAnimations(animations, scene);
 
   useEffect(() => {

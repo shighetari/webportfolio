@@ -11,7 +11,7 @@ interface HdriAnimeJungleProps {
   
 
   const HdriAnimeJungle: React.FC<HdriAnimeJungleProps> = ({ position = [0, 0, 0], scale = [1, 1, 1], rotation = [0, 0, 0] }) => {
-  const { scene, animations } = useGLTF('src/assets/images/free_hdri_background_anime_amazon_jungel.glb');
+  const { scene, animations } = useGLTF('/images/free_hdri_background_anime_amazon_jungel.glb');
   const { ref, mixer } = useAnimations(animations, scene);
 
   useEffect(() => {

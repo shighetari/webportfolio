@@ -11,7 +11,7 @@ interface MobyDockerProps {
   
 
   const MobyDocker: React.FC<MobyDockerProps> = ({ position = [0, 0, 0], scale = [1, 1, 1], rotation = [0, 0, 0] }) => {
-  const { scene, animations } = useGLTF('src/assets/images/moby_dock_docker_whale.glb');
+  const { scene, animations } = useGLTF('/images/moby_dock_docker_whale.glb');
   const { ref, mixer } = useAnimations(animations, scene);
 
   useEffect(() => {

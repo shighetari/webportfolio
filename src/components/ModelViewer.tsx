@@ -43,7 +43,7 @@ import { AIDialogBox } from './AIDialogBox';
 
 
 function Model() {
-  const { scene, animations } = useGLTF('src/assets/images/sci-fi_uniform_girl_and_animation.glb');
+  const { scene, animations } = useGLTF('/images/sci-fi_uniform_girl_and_animation.glb');
   const { ref, mixer } = useAnimations(animations, scene);
 
   useEffect(() => {

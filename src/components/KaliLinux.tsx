@@ -11,7 +11,7 @@ interface KaliLinuxProps {
   
 
   const KaliLinux: React.FC<KaliLinuxProps> = ({ position = [0, 0, 0], scale = [1, 1, 1], rotation = [0, 0, 0] }) => {
-  const { scene, animations } = useGLTF('src/assets/images/kali_linux.glb');
+  const { scene, animations } = useGLTF('/images/kali_linux.glb');
   const { ref, mixer } = useAnimations(animations, scene);
 
   useEffect(() => {

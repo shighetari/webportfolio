@@ -9,7 +9,7 @@ interface SciFiLaptopProps {
 }
 
 const SciFiLaptop: React.FC<SciFiLaptopProps> = ({ position = [0, 0, 0], scale = [1, 1, 1] }) => {
-  const { scene } = useGLTF('src/assets/images/hacker_laptop.glb');
+  const { scene } = useGLTF('/images/hacker_laptop.glb');
 
   return <primitive object={scene} position={position} scale={scale} />;
 };

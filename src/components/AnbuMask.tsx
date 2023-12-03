@@ -11,7 +11,7 @@ interface AnbuMaskProps {
   
 
   const AnbuMask: React.FC<AnbuMaskProps> = ({ position = [0, 0, 0], scale = [1, 1, 1], rotation = [0, 0, 0] }) => {
-  const { scene, animations } = useGLTF('src/assets/images/kakashi_anbu_mask_naruto.glb');
+  const { scene, animations } = useGLTF('/images/kakashi_anbu_mask_naruto.glb');
   const { ref, mixer } = useAnimations(animations, scene);
 
   useEffect(() => {

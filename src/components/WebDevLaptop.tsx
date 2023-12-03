@@ -11,7 +11,7 @@ interface WebDevLaptopProps {
   
 
   const WebDevLaptop: React.FC<WebDevLaptopProps> = ({ position = [0, 0, 0], scale = [1, 1, 1], rotation = [0, 0, 0] }) => {
-  const { scene, animations } = useGLTF('src/assets/images/voxel_web_development.glb');
+  const { scene, animations } = useGLTF('/images/voxel_web_development.glb');
   const { ref, mixer } = useAnimations(animations, scene);
 
   useEffect(() => {

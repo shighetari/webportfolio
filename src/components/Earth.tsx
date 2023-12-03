@@ -11,7 +11,7 @@ interface EarthProps {
   
 
   const Earth: React.FC<EarthProps> = ({ position = [0, 0, 0], scale = [1, 1, 1], rotation = [0, 0, 0] }) => {
-  const { scene, animations } = useGLTF('src/assets/images/earth__terra_-_downloadable_model.glb');
+  const { scene, animations } = useGLTF('/images/earth__terra_-_downloadable_model.glb');
   const { ref, mixer } = useAnimations(animations, scene);
 
   useEffect(() => {
