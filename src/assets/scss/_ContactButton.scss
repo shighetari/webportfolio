@@ -1,0 +1,34 @@
+.contactme-button {
+    background-color: #d8a1e0; // Example background color
+    border: none;
+    border-radius: 50%; // Circular button
+    cursor: pointer;
+    outline: none;
+    padding: 10px;
+    transition: all 0.3s ease;
+  
+    &:hover {
+      background-color: #d8a1e098; // Darken the button on hover
+      transform: scale(1.1); // Slightly enlarge the button
+    }
+  
+    &:focus {
+      box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.5); // Focus outline
+    }
+  
+    &:active {
+      background-color: #367c39; // Change color when clicked
+      transform: scale(0.9); // Slightly shrink the button
+    }
+  
+    img {
+      width: 50px;
+      height: auto;
+      transition: transform 0.3s ease; // Smooth transition for the icon
+  
+      &:hover {
+        transform: rotate(360deg); // Rotate icon on hover
+      }
+    }
+  }
+  

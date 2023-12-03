@@ -1,36 +1,86 @@
-// src/assets/scss/components/_AIDialogBox.scss
+// Defining color and styling variables
+$light-lavender: #f3f2f7;
+$text-color: #333;
+$border-radius: 10px;
+$box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+$animation-duration: 10s;
+$backdrop-max-width: 600px; // Max width for larger screens
+$hover-color: #d8a1e0; // Color for hover effects
 
+// Responsive sizing variables
+$backdrop-width-large: 60%; // Width for larger screens
+$backdrop-height-large: 70%; // Height for larger screens
+$backdrop-width-small: 90%; // Width for smaller screens
+$backdrop-height-small: 80%; // Height for smaller screens
+
+// Keyframes for animations
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+// Base styling for dialog-backdrop
 .dialog-backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 0;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+
+  // Responsive sizing
+  @media (min-width: 768px) {
+    width: $backdrop-width-large;
+    height: $backdrop-height-large;
   }
-  
-  .dialog-content {
-    width: 90%;
-    max-width: 600px; // Adjust as needed
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    max-height: 80vh;
-    overflow: hidden;
+
+  @media (max-width: 767px) {
+    width: $backdrop-width-small;
+    height: $backdrop-height-small;
   }
-  
-  .close-button {
-    align-self: flex-end;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
+}
+
+// Styling for dialog content
+.dialog-content {
+  color: $text-color;
+  width: 100%;
+  max-width: $backdrop-max-width;
+  background-color: $light-lavender;
+  padding: 20px;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+  display: flex;
+  flex-direction: column;
+  max-height: 100%;
+  overflow: auto;
+}
+
+// Close button styling
+.close-button {
+  position: absolute;
+  top: -3vh;
+  right: 1px;
+  background: transparent;
+  border: none;
+  color: $text-color;
+  font-size: 7vh;
+  cursor: pointer;
+  transition: transform 0.3s ease, color 0.3s ease;
+
+  &:hover {
+    transform: rotate(90deg);
+    color: $hover-color;
   }
-  
+
+  &:focus {
+    outline: none;
+  }
+}

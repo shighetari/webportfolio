@@ -1,7 +1,6 @@
 import React from 'react';
-import '../assets/scss/_animatedButton.scss';
-import '../assets/scss/_components.scss';
-
+import '../assets/scss/_ContactButton.scss';
+import ContactIcon from '../assets/icons/eyecontact.svg'; // Import the SVG icon
 
 interface ContactButtonProps {
   onClick: () => any;
@@ -9,8 +8,8 @@ interface ContactButtonProps {
 
 const ContactButton: React.FC<ContactButtonProps> = ({ onClick }) => {
   return (
-    <button className="animated-button" onClick={onClick}>
-      Contact Me
+    <button className="contactme-button" onClick={onClick}>
+      <img src={ContactIcon} alt="Contact Me" /> {/* Use the SVG icon here */}
     </button>
   );
 };

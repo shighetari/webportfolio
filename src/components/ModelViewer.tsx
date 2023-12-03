@@ -117,7 +117,6 @@ export default function ModelViewer() {
 
   // Button misc
   const onToggleContact = () => {
-    console.log('Toggling dialog visibility');
     if (isDialogVisible) {
       // Start the fade-out animation
       const dialogBox = document.querySelector('.dialog-box');
@@ -195,7 +194,7 @@ export default function ModelViewer() {
         <button>button three</button> */}
 
         <AnimatedButton label="Reset Camera" onClick={resetCamera} />
-        <AnimatedButton label="Button Two" onClick={resetCamera} />
+        <AnimatedButton label="Dev Alpha 1.0" onClick={undefined} />
         <AnimatedButton label="AI Assistant" onClick={toggleChatDialog} />
         <BackgroundMusic />
         <ContactButton onClick={onToggleContact} />
