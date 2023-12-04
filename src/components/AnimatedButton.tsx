@@ -1,6 +1,6 @@
 // src/components/AnimatedButton.tsx
-import React from 'react';
-import '../assets/scss/_animatedButton.scss';
+import React from "react";
+import "../assets/scss/_animatedButton.scss";
 
 interface AnimatedButtonProps {
   label: string;

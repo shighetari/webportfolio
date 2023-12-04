@@ -1,8 +1,8 @@
-import { useRef, useState, useEffect } from 'react';
-import { useFrame, extend } from '@react-three/fiber';
-import { Mesh, ShaderMaterial, Color } from 'three';
-import { Text } from '@react-three/drei';
-import * as THREE from 'three';
+import { useRef, useState, useEffect } from "react";
+import { useFrame, extend } from "@react-three/fiber";
+import { Mesh, ShaderMaterial, Color } from "three";
+import { Text } from "@react-three/drei";
+import * as THREE from "three";
 
 extend({ ShaderMaterial });
 
@@ -38,7 +38,11 @@ interface InteractiveButtonProps {
   isDialogVisible: boolean;
 }
 
-const InteractiveButton: React.FC<InteractiveButtonProps> = ({ position, onToggle, isDialogVisible }) => {
+const InteractiveButton: React.FC<InteractiveButtonProps> = ({
+  position,
+  onToggle,
+  isDialogVisible,
+}) => {
   const meshRef = useRef<Mesh>(null);
   const [hovered, setHover] = useState(false);
   const [isPressed, setPressed] = useState(isDialogVisible);
@@ -59,41 +63,42 @@ const InteractiveButton: React.FC<InteractiveButtonProps> = ({ position, onToggl
 
   return (
     <group position={position}>
-    <mesh
-      ref={meshRef}
-      position={position}
-      onClick={handleOnClick}
-      onPointerOver={() => setHover(true)}
-      onPointerOut={() => setHover(false)}
-    >
-      {/* <boxGeometry args={[1.2, 0.6, 0.2]} /> */}
-      <sphereGeometry args={[0.6, 32, 32]} />
-      <shaderMaterial
-        attach="material"
-        args={[{
-          uniforms: {
-            time: { value: 0 },
-            hovered: { value: 0 },
-            color1: { value: new Color(isPressed ? '#00FF00' : '#FF6347') },
-            color2: { value: new Color('#FFFFFF') },
-          },
-          vertexShader: blobVertexShader,
-          fragmentShader: blobFragmentShader,
-          transparent: true,
-        }]}
-      />
-    </mesh>
-          <Text
-          position={[-2, 2, -1]} // Adjust the position as needed
-          fontSize={.5}
-          color="#dbafe0" // Text color
-          anchorX="center" // Horizontal center alignment
-          anchorY="middle" // Vertical center alignment
-        >
-          Click Me
-        </Text>
-        </group>
-
+      <mesh
+        ref={meshRef}
+        position={position}
+        onClick={handleOnClick}
+        onPointerOver={() => setHover(true)}
+        onPointerOut={() => setHover(false)}
+      >
+        {/* <boxGeometry args={[1.2, 0.6, 0.2]} /> */}
+        <sphereGeometry args={[0.6, 32, 32]} />
+        <shaderMaterial
+          attach="material"
+          args={[
+            {
+              uniforms: {
+                time: { value: 0 },
+                hovered: { value: 0 },
+                color1: { value: new Color(isPressed ? "#00FF00" : "#FF6347") },
+                color2: { value: new Color("#FFFFFF") },
+              },
+              vertexShader: blobVertexShader,
+              fragmentShader: blobFragmentShader,
+              transparent: true,
+            },
+          ]}
+        />
+      </mesh>
+      <Text
+        position={[-2, 2, -1]} // Adjust the position as needed
+        fontSize={0.5}
+        color="#dbafe0" // Text color
+        anchorX="center" // Horizontal center alignment
+        anchorY="middle" // Vertical center alignment
+      >
+        Click Me
+      </Text>
+    </group>
   );
 };
 

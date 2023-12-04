@@ -1,49 +1,49 @@
 /* Styles */
-import '../assets/scss/_components.scss';
-import '../assets/scss/_base.scss';
-import '../assets/scss/_layout.scss';
+import "../assets/scss/_components.scss";
+import "../assets/scss/_base.scss";
+import "../assets/scss/_layout.scss";
 /* ~~~~~ */
-import React, { Suspense, useRef, useState, useEffect } from 'react';
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls, useGLTF, useAnimations } from '@react-three/drei';
-import { LoopRepeat } from 'three';
-import SceneText from './SceneText';
-import InteractiveButton from './InteractiveButton';
-import Environment from './Environment';
-import FoxModel from './FoxModel';
-import DialogBox from './DialogBox';
-import WorldOne from './WorldOne';
-import Bmw1000rr from './Bmw1000rr';
-import SciFiLaptop from './SciFiLaptop';
-import Butterfly from './Butterfly';
-import * as THREE from 'three';
-import Phoenix from './Phoenix';
+import React, { Suspense, useRef, useState, useEffect } from "react";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls, useGLTF, useAnimations } from "@react-three/drei";
+import { LoopRepeat } from "three";
+import SceneText from "./SceneText";
+import InteractiveButton from "./InteractiveButton";
+import Environment from "../models/Environment";
+import FoxModel from "../models/FoxModel";
+import DialogBox from "./DialogBox";
+import WorldOne from "../models/WorldOne";
+import Bmw1000rr from "../models/Bmw1000rr";
+import SciFiLaptop from "../models/SciFiLaptop";
+import Butterfly from "../models/Butterfly";
+import * as THREE from "three";
+import Phoenix from "../models/Phoenix";
 // import Zen from './Zen'; //creates weird floating blackspace bug
-import FlyingBook from './FlyingBook';
-import AsianShip from './AsianShip';
-import ITIcons from './ITIcons';
-import MobyDocker from './MobyDocker';
-import WebDevLaptop from './WebDevLaptop';
-import HelloWorldPython from './HelloWorldPython';
-import KaliLinux from './KaliLinux';
-import Earth from './Earth';
-import HoHo from './HoHo';
-import AnbuMask from './AnbuMask';
-import AnimatedButton from './AnimatedButton';
-import BackgroundMusic from './BackgroundMusic';
-import ContactButton from './ContactButton';
-// import ParticlesBackground from './ParticlesBackground';
-import ArchLinux from './ArchLinux';
-import GNULinux from './GNULinux';
-import HdriAnimeJungle from './HdriAnimeJungle';
-import MechaWep from './mechaWep';
-import Mew from './Mew';
-import { ChatBox } from './ChatBox';
-import { AIDialogBox } from './AIDialogBox';
-
+import FlyingBook from "../models/FlyingBook";
+import AsianShip from "../models/AsianShip";
+import ITIcons from "./ITIcons";
+import MobyDocker from "../models/MobyDocker";
+import WebDevLaptop from "../models/WebDevLaptop";
+import HelloWorldPython from "../models/HelloWorldPython";
+import KaliLinux from "../models/KaliLinux";
+import Earth from "../models/Earth";
+import HoHo from "../models/HoHo";
+import AnbuMask from "../models/AnbuMask";
+import AnimatedButton from "./AnimatedButton";
+import BackgroundMusic from "./BackgroundMusic";
+import ContactButton from "./ContactButton";
+import ArchLinux from "../models/ArchLinux";
+import GNULinux from "../models/GNULinux";
+import HdriAnimeJungle from "../models/HdriAnimeJungle";
+import MechaWep from "../models/mechaWep";
+import Mew from "../models/Mew";
+import { ChatBox } from "./ChatBox";
+import { AIDialogBox } from "./AIDialogBox";
 
 function Model() {
-  const { scene, animations } = useGLTF('/images/sci-fi_uniform_girl_and_animation.glb');
+  const { scene, animations } = useGLTF(
+    "/images/sci-fi_uniform_girl_and_animation.glb"
+  );
   const { ref, mixer } = useAnimations(animations, scene);
 
   useEffect(() => {
@@ -55,12 +55,14 @@ function Model() {
   }, [mixer, animations]);
 
   //reminder to turn this origin verision into a component to follow the established pattern
-  return <primitive
-    object={scene}
-    ref={ref}
-    scale={[0.06, 0.06, 0.06]}
-    position={[1, 0.3, 1]}
-  />;
+  return (
+    <primitive
+      object={scene}
+      ref={ref}
+      scale={[0.06, 0.06, 0.06]}
+      position={[1, 0.3, 1]}
+    />
+  );
 }
 
 export default function ModelViewer() {
@@ -84,7 +86,11 @@ export default function ModelViewer() {
         const elapsed = (currentTime - startTime) / duration;
 
         if (elapsed < 1) {
-          const nextPosition = new THREE.Vector3().lerpVectors(startPosition, endPosition, elapsed);
+          const nextPosition = new THREE.Vector3().lerpVectors(
+            startPosition,
+            endPosition,
+            elapsed
+          );
           controls.object.position.copy(nextPosition);
           controls.update();
           requestAnimationFrame(animate);
@@ -119,9 +125,9 @@ export default function ModelViewer() {
   const onToggleContact = () => {
     if (isDialogVisible) {
       // Start the fade-out animation
-      const dialogBox = document.querySelector('.dialog-box');
+      const dialogBox = document.querySelector(".dialog-box");
       if (dialogBox) {
-        dialogBox.classList.remove('visible');
+        dialogBox.classList.remove("visible");
       }
       // Wait for the animation to finish before hiding the dialog box
       setTimeout(() => {
@@ -142,53 +148,94 @@ export default function ModelViewer() {
   };
 
   return (
-    <div className='model-viewer'>
-
+    <div className="model-viewer">
       <div className="canvas-container">
         <Canvas camera={{ position: [4, 3, 5], fov: 100 }}>
-          <Environment />          
-          <Suspense fallback={null}>            
+          <Environment />
+          <Suspense fallback={null}>
             <ambientLight intensity={0.5} />
             <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
             <pointLight position={[-10, -10, -10]} />
             <Model />
             <OrbitControls ref={orbitRef} />
-            <SceneText content="Welcome to My Portfolio" position={[0.5, 3.5, 1.3]} />
+            <SceneText
+              content="Welcome to My Portfolio"
+              position={[0.5, 3.5, 1.3]}
+            />
             <InteractiveButton
-              position={[-2, .5, -1]}
+              position={[-2, 0.5, -1]}
               onToggle={onToggle}
               isDialogVisible={isDialogVisible}
             />
             <FoxModel position={[2, 1, 1]} scale={[1.5, 1.5, 1.5]} />
-            <Bmw1000rr position={[2, .9, 1]} scale={[.08, .08, .08]} />
+            <Bmw1000rr position={[2, 0.9, 1]} scale={[0.08, 0.08, 0.08]} />
             <WorldOne position={[-4, 0, 2]} scale={[15, 15, 15]} />
-            <SciFiLaptop position={[-5, 0, 2]} scale={[.001, .001, .001]} />
-            <Butterfly position={[5, 5, 0]} scale={[.5, .5, .5]} />
-            <Phoenix position={[12, 17, 2]} scale={[.005, .005, .005]} />
+            <SciFiLaptop position={[-5, 0, 2]} scale={[0.001, 0.001, 0.001]} />
+            <Butterfly position={[5, 5, 0]} scale={[0.5, 0.5, 0.5]} />
+            <Phoenix position={[12, 17, 2]} scale={[0.005, 0.005, 0.005]} />
             {/* <Zen position={[1.6, 0.4, 0]} scale={[.5, .5, .5]}/> */}
-            <FlyingBook position={[3, 2, 2]} scale={[.001, .001, .001]} />
+            <FlyingBook position={[3, 2, 2]} scale={[0.001, 0.001, 0.001]} />
             <AsianShip position={[0, -20, 20]} scale={[10, 10, 10]} />
-            <ITIcons position={[2, 1, -9]} scale={[.5, .5, .5]} rotation={[1, 4.8, 0]} />
-            <MobyDocker position={[10, -4, 20]} scale={[2, 2, 2]} rotation={[0, 0, 0]} />
-            <WebDevLaptop position={[-2, -.5, 1]} scale={[.3, .3, .3]} rotation={[0, 0, 0]} />
-            <HelloWorldPython position={[5, 3, -1]} scale={[.3, .3, .3]} rotation={[0, 0, 0]} />
-            <KaliLinux position={[-9, 3, 1]} scale={[.1, .1, .1]} rotation={[0, 1, 0]} />
-            <Earth position={[11, -9, 10]} scale={[200, 200, 200]} rotation={[0, 0, 0]} />
-            <HoHo position={[0, 30, 0]} scale={[.3, .3, .3]} rotation={[0, 0, 0]} />
-            <AnbuMask position={[3.1, 0, 0]} scale={[.01, .01, .01]} rotation={[1, 0, 0]} />
+            <ITIcons
+              position={[2, 1, -9]}
+              scale={[0.5, 0.5, 0.5]}
+              rotation={[1, 4.8, 0]}
+            />
+            <MobyDocker
+              position={[10, -4, 20]}
+              scale={[2, 2, 2]}
+              rotation={[0, 0, 0]}
+            />
+            <WebDevLaptop
+              position={[-2, -0.5, 1]}
+              scale={[0.3, 0.3, 0.3]}
+              rotation={[0, 0, 0]}
+            />
+            <HelloWorldPython
+              position={[5, 3, -1]}
+              scale={[0.3, 0.3, 0.3]}
+              rotation={[0, 0, 0]}
+            />
+            <KaliLinux
+              position={[-9, 3, 1]}
+              scale={[0.1, 0.1, 0.1]}
+              rotation={[0, 1, 0]}
+            />
+            <Earth
+              position={[11, -9, 10]}
+              scale={[200, 200, 200]}
+              rotation={[0, 0, 0]}
+            />
+            <HoHo
+              position={[0, 30, 0]}
+              scale={[0.3, 0.3, 0.3]}
+              rotation={[0, 0, 0]}
+            />
+            <AnbuMask
+              position={[3.1, 0, 0]}
+              scale={[0.01, 0.01, 0.01]}
+              rotation={[1, 0, 0]}
+            />
             <ArchLinux position={[1, 10, 30]} scale={[1, 1, 1]} />
-            <GNULinux position={[1, 20, -30]} scale={[.3, .3, .3]} />
+            <GNULinux position={[1, 20, -30]} scale={[0.3, 0.3, 0.3]} />
             <HdriAnimeJungle position={[1, 1, 1]} scale={[120, 120, 120]} />
-            <MechaWep position={[-300, 1, 100]} scale={[200, 200, 200]} rotation={[0, 1, 0]} />
-            <Mew position={[200, 400, 500]} scale={[1000, 1000, 1000]} rotation={[0, 2, 0]} />
+            <MechaWep
+              position={[-300, 1, 100]}
+              scale={[200, 200, 200]}
+              rotation={[0, 1, 0]}
+            />
+            <Mew
+              position={[200, 400, 500]}
+              scale={[1000, 1000, 1000]}
+              rotation={[0, 2, 0]}
+            />
           </Suspense>
 
           <DialogBox onClose={onToggleContact} isVisible={isDialogVisible} />
           {/* {isDialogVisible && <DialogBox onClose={onToggleContact} isVisible={isDialogVisible} />} */}
-
         </Canvas>
       </div>
-      <div className='overlay-ui'>
+      <div className="overlay-ui">
         {/* <button onClick={resetCamera}>Reset Camera</button>
         <button>button two</button>
         <button>button three</button> */}
@@ -199,8 +246,8 @@ export default function ModelViewer() {
         <BackgroundMusic />
         <ContactButton onClick={onToggleContact} />
         <AIDialogBox isVisible={isChatVisible} onClose={toggleChatDialog}>
-        <ChatBox />
-      </AIDialogBox>
+          <ChatBox />
+        </AIDialogBox>
       </div>
     </div>
   );

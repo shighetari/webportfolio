@@ -1,8 +1,6 @@
-import React from 'react';
-import '../assets/scss/_ContactButton.scss';
-// import ContactIcon from '../assets/icons/eyecontact.svg'; // Import the SVG icon
-import ContactIcon from '/icons/eyecontact.svg'; // Import the SVG icon
-
+import React from "react";
+import "../assets/scss/_ContactButton.scss";
+import ContactIcon from "/icons/eyecontact.svg"; // Import the SVG icon
 
 interface ContactButtonProps {
   onClick: () => any;

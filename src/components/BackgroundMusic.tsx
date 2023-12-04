@@ -1,10 +1,10 @@
 // src/components/BackgroundMusic.tsx
-import React, { useState, useEffect } from 'react';
-import { FaPlay, FaPause, FaVolumeUp, FaVolumeMute } from 'react-icons/fa';
-import '../assets/scss/_backgroundMusic.scss';
+import React, { useState, useEffect } from "react";
+import { FaPlay, FaPause, FaVolumeUp, FaVolumeMute } from "react-icons/fa";
+import "../assets/scss/_backgroundMusic.scss";
 
 const BackgroundMusic = () => {
-  const [audio] = useState(new Audio('/audio/ReflectedLight.mp3'));
+  const [audio] = useState(new Audio("/audio/ReflectedLight.mp3"));
   const [playing, setPlaying] = useState(false);
   const [volume, setVolume] = useState(0.75); // Default volume level
 
@@ -19,7 +19,7 @@ const BackgroundMusic = () => {
     audio.volume = volume;
   }, [audio, volume]);
 
-  const handleVolumeChange = (event: { target: { value: string; }; }) => {
+  const handleVolumeChange = (event: { target: { value: string } }) => {
     const newVolume = parseFloat(event.target.value);
     setVolume(newVolume);
     audio.volume = newVolume;

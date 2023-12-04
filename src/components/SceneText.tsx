@@ -1,8 +1,8 @@
 // src/components/SceneText.tsx
-import React, { useRef } from 'react';
-import { Text } from '@react-three/drei';
-import { useFrame } from '@react-three/fiber';
-import { Mesh, Vector3 } from 'three';
+import React, { useRef } from "react";
+import { Text } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
+import { Mesh, Vector3 } from "three";
 
 interface SceneTextProps {
   content: string;
