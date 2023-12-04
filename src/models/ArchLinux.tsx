@@ -1,17 +1,17 @@
-// src/components/Mew.tsx
+// src/components/ArchLinux.tsx
 import React, { useEffect } from 'react';
 import { useGLTF, useAnimations } from '@react-three/drei';
 import { Vector3, LoopRepeat } from 'three';
 
-interface MewProps {
+interface ArchLinuxProps {
     position?: Vector3 | [number, number, number];
     scale?: Vector3 | [number, number, number];
     rotation?: Vector3 | [number, number, number]; // Add rotation prop
   }
   
 
-  const Mew: React.FC<MewProps> = ({ position = [0, 0, 0], scale = [1, 1, 1], rotation = [0, 0, 0] }) => {
-  const { scene, animations } = useGLTF('src/assets/images/eevees_bedroom.glb');
+  const ArchLinux: React.FC<ArchLinuxProps> = ({ position = [0, 0, 0], scale = [1, 1, 1], rotation = [0, 0, 0] }) => {
+  const { scene, animations } = useGLTF('/images/arch_linux_logo.glb');
   const { ref, mixer } = useAnimations(animations, scene);
 
   useEffect(() => {
@@ -25,4 +25,4 @@ interface MewProps {
   return <primitive object={scene} ref={ref} position={position} scale={scale} rotation={rotation} />;
 };
 
-export default Mew;
+export default ArchLinux;

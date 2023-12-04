@@ -1,17 +1,17 @@
-// src/components/Earth.tsx
+// src/components/KaliLinux.tsx
 import React, { useEffect } from 'react';
 import { useGLTF, useAnimations } from '@react-three/drei';
 import { Vector3, LoopRepeat } from 'three';
 
-interface EarthProps {
+interface KaliLinuxProps {
     position?: Vector3 | [number, number, number];
     scale?: Vector3 | [number, number, number];
     rotation?: Vector3 | [number, number, number]; // Add rotation prop
   }
   
 
-  const Earth: React.FC<EarthProps> = ({ position = [0, 0, 0], scale = [1, 1, 1], rotation = [0, 0, 0] }) => {
-  const { scene, animations } = useGLTF('src/assets/images/earth__terra_-_downloadable_model.glb');
+  const KaliLinux: React.FC<KaliLinuxProps> = ({ position = [0, 0, 0], scale = [1, 1, 1], rotation = [0, 0, 0] }) => {
+  const { scene, animations } = useGLTF('/images/kali_linux.glb');
   const { ref, mixer } = useAnimations(animations, scene);
 
   useEffect(() => {
@@ -25,4 +25,4 @@ interface EarthProps {
   return <primitive object={scene} ref={ref} position={position} scale={scale} rotation={rotation} />;
 };
 
-export default Earth;
+export default KaliLinux;

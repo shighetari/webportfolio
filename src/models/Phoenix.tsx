@@ -1,15 +1,15 @@
-// src/components/Zen.tsx
+// src/components/Phoenix.tsx
 import React, { useEffect } from 'react';
 import { useGLTF, useAnimations } from '@react-three/drei';
 import { Vector3, LoopRepeat } from 'three';
 
-interface ZenProps {
+interface PhoenixProps {
   position?: Vector3 | [number, number, number];
   scale?: Vector3 | [number, number, number];
 }
 
-const Zen: React.FC<ZenProps> = ({ position = [0, 0, 0], scale = [1, 1, 1] }) => {
-  const { scene, animations } = useGLTF('src/assets/images/interdimensional_zen_gallery_space.glb');
+const Phoenix: React.FC<PhoenixProps> = ({ position = [0, 0, 0], scale = [1, 1, 1] }) => {
+  const { scene, animations } = useGLTF('/images/phoenix_bird.glb');
   const { ref, mixer } = useAnimations(animations, scene);
 
   useEffect(() => {
@@ -23,4 +23,4 @@ const Zen: React.FC<ZenProps> = ({ position = [0, 0, 0], scale = [1, 1, 1] }) =>
   return <primitive object={scene} ref={ref} position={position} scale={scale} />;
 };
 
-export default Zen;
+export default Phoenix;

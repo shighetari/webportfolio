@@ -1,17 +1,17 @@
-// src/components/AnbuMask.tsx
+// src/components/HelloWorldPython.tsx
 import React, { useEffect } from 'react';
 import { useGLTF, useAnimations } from '@react-three/drei';
 import { Vector3, LoopRepeat } from 'three';
 
-interface AnbuMaskProps {
+interface HelloWorldPythonProps {
     position?: Vector3 | [number, number, number];
     scale?: Vector3 | [number, number, number];
     rotation?: Vector3 | [number, number, number]; // Add rotation prop
   }
   
 
-  const AnbuMask: React.FC<AnbuMaskProps> = ({ position = [0, 0, 0], scale = [1, 1, 1], rotation = [0, 0, 0] }) => {
-  const { scene, animations } = useGLTF('src/assets/images/kakashi_anbu_mask_naruto.glb');
+  const HelloWorldPython: React.FC<HelloWorldPythonProps> = ({ position = [0, 0, 0], scale = [1, 1, 1], rotation = [0, 0, 0] }) => {
+  const { scene, animations } = useGLTF('/images/hello_world_in_python.glb');
   const { ref, mixer } = useAnimations(animations, scene);
 
   useEffect(() => {
@@ -25,4 +25,4 @@ interface AnbuMaskProps {
   return <primitive object={scene} ref={ref} position={position} scale={scale} rotation={rotation} />;
 };
 
-export default AnbuMask;
+export default HelloWorldPython;

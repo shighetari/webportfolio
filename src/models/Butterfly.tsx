@@ -1,15 +1,15 @@
-// src/components/AsianShip.tsx
+// src/components/Butterfly.tsx
 import React, { useEffect } from 'react';
 import { useGLTF, useAnimations } from '@react-three/drei';
 import { Vector3, LoopRepeat } from 'three';
 
-interface AsianShipProps {
+interface ButterflyProps {
   position?: Vector3 | [number, number, number];
   scale?: Vector3 | [number, number, number];
 }
 
-const AsianShip: React.FC<AsianShipProps> = ({ position = [0, 0, 0], scale = [1, 1, 1] }) => {
-  const { scene, animations } = useGLTF('src/assets/images/asian_pirate_ship.glb');
+const Butterfly: React.FC<ButterflyProps> = ({ position = [0, 0, 0], scale = [1, 1, 1] }) => {
+  const { scene, animations } = useGLTF('/images/animated_butterfly.glb');
   const { ref, mixer } = useAnimations(animations, scene);
 
   useEffect(() => {
@@ -23,4 +23,4 @@ const AsianShip: React.FC<AsianShipProps> = ({ position = [0, 0, 0], scale = [1,
   return <primitive object={scene} ref={ref} position={position} scale={scale} />;
 };
 
-export default AsianShip;
+export default Butterfly;

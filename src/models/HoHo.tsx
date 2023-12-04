@@ -1,17 +1,17 @@
-// src/components/KaliLinux.tsx
+// src/components/HoHo.tsx
 import React, { useEffect } from 'react';
 import { useGLTF, useAnimations } from '@react-three/drei';
 import { Vector3, LoopRepeat } from 'three';
 
-interface KaliLinuxProps {
+interface HoHoProps {
     position?: Vector3 | [number, number, number];
     scale?: Vector3 | [number, number, number];
     rotation?: Vector3 | [number, number, number]; // Add rotation prop
   }
   
 
-  const KaliLinux: React.FC<KaliLinuxProps> = ({ position = [0, 0, 0], scale = [1, 1, 1], rotation = [0, 0, 0] }) => {
-  const { scene, animations } = useGLTF('src/assets/images/kali_linux.glb');
+  const HoHo: React.FC<HoHoProps> = ({ position = [0, 0, 0], scale = [1, 1, 1], rotation = [0, 0, 0] }) => {
+  const { scene, animations } = useGLTF('/images/250_hooh_flying_animation.glb');
   const { ref, mixer } = useAnimations(animations, scene);
 
   useEffect(() => {
@@ -25,4 +25,4 @@ interface KaliLinuxProps {
   return <primitive object={scene} ref={ref} position={position} scale={scale} rotation={rotation} />;
 };
 
-export default KaliLinux;
+export default HoHo;

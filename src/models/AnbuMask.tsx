@@ -1,17 +1,17 @@
-// src/components/WebDevLaptop.tsx
+// src/components/AnbuMask.tsx
 import React, { useEffect } from 'react';
 import { useGLTF, useAnimations } from '@react-three/drei';
 import { Vector3, LoopRepeat } from 'three';
 
-interface WebDevLaptopProps {
+interface AnbuMaskProps {
     position?: Vector3 | [number, number, number];
     scale?: Vector3 | [number, number, number];
     rotation?: Vector3 | [number, number, number]; // Add rotation prop
   }
   
 
-  const WebDevLaptop: React.FC<WebDevLaptopProps> = ({ position = [0, 0, 0], scale = [1, 1, 1], rotation = [0, 0, 0] }) => {
-  const { scene, animations } = useGLTF('src/assets/images/voxel_web_development.glb');
+  const AnbuMask: React.FC<AnbuMaskProps> = ({ position = [0, 0, 0], scale = [1, 1, 1], rotation = [0, 0, 0] }) => {
+  const { scene, animations } = useGLTF('/images/kakashi_anbu_mask_naruto.glb');
   const { ref, mixer } = useAnimations(animations, scene);
 
   useEffect(() => {
@@ -25,4 +25,4 @@ interface WebDevLaptopProps {
   return <primitive object={scene} ref={ref} position={position} scale={scale} rotation={rotation} />;
 };
 
-export default WebDevLaptop;
+export default AnbuMask;

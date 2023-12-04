@@ -1,30 +1,65 @@
-# React + TypeScript + Vite
+# 🌐 Francisco's portfolio: A React Typescript UI Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## About The Project 📜
+Within my portfolio I am utilizing the power of React and TypeScript to showcase professional skills and projects. It features a dynamic 3D environment using `@react-three/fiber`, interactive components, and an AI chatbot powered by OpenAI. Dive into a world where my professional accomplishments are not just listed, but experienced.
 
-Currently, two official plugins are available:
+## Features 🌟
+- Interactive 3D Models using `@react-three/drei` and `@react-three/fiber`
+- AI Chatbot integration with OpenAI for dynamic user interactions
+- Responsive and modern UI with React and TypeScript
+- Elegant styling with SASS and FontAwesome Icons
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Getting Started 🚀
 
-## Expanding the ESLint configuration
+### Prerequisites 🛠️
+- Node.js (v18.x.x)
+- npm (v8.x.x)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+### Installation 💾
+1. Clone the repo:
+```bash
+git clone/git pull
+```
+2. Install NPM packages:
+```bash
+npm install
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### Development Workflow 👨‍💻
+1. To start the development server:
+```bash
+npm run dev
+```
+2. To build for production:
+```bash
+npm run build
+```
+3. To run lint checks:
+```bash
+npm run lint
+```
+## Docker Setup 🐳
+This project includes Docker configuration for easy deployment.
+
+1. Build the Docker image: docker build -t portfolio .
+2. Run the Docker container: docker run -p 5000:5000 portfolio
+
+## Major Technologies Used 💻
+- React.js
+- TypeScript
+- Vite
+- @react-three/fiber and @react-three/drei for 3D models
+- Sass for styling
+- FontAwesome for icons
+- Axios for API requests
+- OpenAI SDK
+- Node.js and npm
+- Docker for containerization
+
+## License 📄
+Distributed under the MIT License. See `LICENSE` for more information.
+
+## Contact 📧
+- Francisco Barrios - [https://www.linkedin.com/in/developerbarrios/](https://www.linkedin.com/in/developerbarrios/)
+- Project Link: [https://github.com/shighetari/webportfolio](https://github.com/shighetari/webportfolio)
+

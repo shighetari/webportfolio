@@ -9,7 +9,7 @@ interface Bmw1000rrProps {
 }
 
 const Bmw1000rr: React.FC<Bmw1000rrProps> = ({ position = [0, 0, 0], scale = [1, 1, 1] }) => {
-  const { scene } = useGLTF('src/assets/images/bmw_rr_1000.glb');
+  const { scene } = useGLTF('/images/bmw_rr_1000.glb');
 
   return <primitive object={scene} position={position} scale={scale} />;
 };

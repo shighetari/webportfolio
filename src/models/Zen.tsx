@@ -1,15 +1,15 @@
-// src/components/FlyingBook.tsx
+// src/components/Zen.tsx
 import React, { useEffect } from 'react';
 import { useGLTF, useAnimations } from '@react-three/drei';
 import { Vector3, LoopRepeat } from 'three';
 
-interface FlyingBookProps {
+interface ZenProps {
   position?: Vector3 | [number, number, number];
   scale?: Vector3 | [number, number, number];
 }
 
-const FlyingBook: React.FC<FlyingBookProps> = ({ position = [0, 0, 0], scale = [1, 1, 1] }) => {
-  const { scene, animations } = useGLTF('src/assets/images/flying_magic_book.glb');
+const Zen: React.FC<ZenProps> = ({ position = [0, 0, 0], scale = [1, 1, 1] }) => {
+  const { scene, animations } = useGLTF('/images/interdimensional_zen_gallery_space.glb');
   const { ref, mixer } = useAnimations(animations, scene);
 
   useEffect(() => {
@@ -23,4 +23,4 @@ const FlyingBook: React.FC<FlyingBookProps> = ({ position = [0, 0, 0], scale = [
   return <primitive object={scene} ref={ref} position={position} scale={scale} />;
 };
 
-export default FlyingBook;
+export default Zen;

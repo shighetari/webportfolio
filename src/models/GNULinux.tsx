@@ -11,7 +11,7 @@ interface GNULinuxProps {
   
 
   const GNULinux: React.FC<GNULinuxProps> = ({ position = [0, 0, 0], scale = [1, 1, 1], rotation = [0, 0, 0] }) => {
-  const { scene, animations } = useGLTF('src/assets/images/tux.glb');
+  const { scene, animations } = useGLTF('/images/tux.glb');
   const { ref, mixer } = useAnimations(animations, scene);
 
   useEffect(() => {

@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { sendPromptToAssistant } from "../services/AssistantService";
 import "../assets/scss/_ChatBox.scss";
-import userIcon from "../assets/icons/kalilinux-svgrepo-com.svg"; // Replace with your actual file path
-import assistantIcon from "../assets/icons/linux-tux-svgrepo-com.svg"; // Replace with your actual file path
-import messageIcon from "../assets/icons/arch-linux-svgrepo-com(2).svg"; // Replace with your actual file path
+import userIcon from "/icons/kalilinux-svgrepo-com.svg";
+import assistantIcon from "/icons/linux-tux-svgrepo-com.svg";
+import messageIcon from "/icons/arch-linux-svgrepo-com(2).svg";
 
 interface TextContent {
   type: string;
@@ -127,13 +127,10 @@ export const ChatBox = () => {
             >
               Why should I hire Francisco?
             </li>
-            <li onClick={() => handleSuggestionSelect("Кто ты?")}>
-              Кто ты?
-            </li>
+            <li onClick={() => handleSuggestionSelect("Кто ты?")}>Кто ты?</li>
             <li onClick={() => handleSuggestionSelect("Кто такой Франциско?")}>
               Кто такой Франциско?
             </li>
-          
           </ul>
         </div>
       )}
@@ -163,7 +160,7 @@ export const ChatBox = () => {
         <div ref={messagesEndRef} />
       </div>
       <div className="input-area">
-      <img src={messageIcon} alt="Message Icon" className="input-icon" />
+        <img src={messageIcon} alt="Message Icon" className="input-icon" />
         <textarea
           id="chat-input"
           value={input}

@@ -9,7 +9,7 @@ interface FoxModelProps {
 }
 
 const FoxModel: React.FC<FoxModelProps> = ({ position = [0, 0, 0], scale = [1, 1, 1] }) => {
-  const { scene } = useGLTF('src/assets/images/fox_in_a_cape.glb');
+  const { scene } = useGLTF('/images/fox_in_a_cape.glb');
 
   return <primitive object={scene} position={position} scale={scale} />;
 };
