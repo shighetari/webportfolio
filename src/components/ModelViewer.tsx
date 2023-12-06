@@ -36,7 +36,7 @@ import ArchLinux from "../models/ArchLinux";
 import GNULinux from "../models/GNULinux";
 import HdriAnimeJungle from "../models/HdriAnimeJungle";
 import MechaWep from "../models/mechaWep";
-import Mew from "../models/Mew";
+// import Mew from "../models/Mew";
 import { ChatBox } from "./ChatBox";
 import { AIDialogBox } from "./AIDialogBox";
 
@@ -224,11 +224,11 @@ export default function ModelViewer() {
               scale={[200, 200, 200]}
               rotation={[0, 1, 0]}
             />
-            <Mew
+            {/* <Mew
               position={[200, 400, 500]}
               scale={[1000, 1000, 1000]}
               rotation={[0, 2, 0]}
-            />
+            /> */}
           </Suspense>
 
           <DialogBox onClose={onToggleContact} isVisible={isDialogVisible} />

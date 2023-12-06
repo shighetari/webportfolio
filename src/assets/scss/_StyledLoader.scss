@@ -1,0 +1,38 @@
+// src/assets/scss/_StyledLoader.scss
+.styled-loader {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #1a1a2e;
+    color: #e94560;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+  
+    .spinner {
+      border: 5px solid rgba(255, 255, 255, 0.2);
+      border-top-color: #e94560;
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      animation: spin 1s linear infinite;
+    }
+  
+    .loading-text {
+      margin-top: 20px;
+      animation: fadeInOut 2s linear infinite;
+    }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  @keyframes fadeInOut {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+  }
+  
