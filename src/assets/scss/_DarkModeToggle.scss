@@ -1,0 +1,58 @@
+// Define primary colors
+$color-primary: #d8a1e0;
+$color-dark: #333;
+$color-light: #FFF;
+
+// Dark Mode Toggle Button Styles
+.dark-mode-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: $color-primary;
+  border: none;
+  border-radius: 50px; // Circular shape
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s, transform 0.3s;
+
+  svg {
+    color: $color-light;
+    transition: transform 0.3s, color 0.3s;
+  }
+
+  &.dark {
+    background-color: $color-dark;
+
+    svg {
+      transform: rotate(-30deg);
+      color: $color-light;
+    }
+  }
+
+  &.light {
+    background-color: $color-light;
+
+    svg {
+      transform: rotate(30deg);
+      color: $color-dark;
+    }
+  }
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+// Dark Mode Styles
+body.dark-mode {
+  $background-dark: #121212;
+  $text-dark: #ddd;
+
+  background-color: $background-dark;
+  color: $text-dark;
+  transition: background-color 0.3s, color 0.3s;
+}
