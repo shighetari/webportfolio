@@ -1,0 +1,185 @@
+@import "variables";
+
+.assistant-minimize {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.5rem;
+  border: none;
+  background-color: $primary-color;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: background-color 0.3s, transform 0.2s;
+  min-width: 150px; // Uniform width
+
+  &:hover {
+    background-color: darken($primary-color, 10%);
+    transform: scale(1.05);
+  }
+}
+
+.assistant-wrapper {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 100;
+
+  .assistant-toggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    background-color: #5e60ce;
+    border-radius: 50%;
+    cursor: pointer;
+
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      transition: transform 0.2s;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  .assistant-container {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    background-color: $color-light; // Use variable for light theme
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    max-width: 90vw;
+    padding: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+
+    @media (max-width: 768px) {
+      width: 80%;
+    }
+
+    .assistant-avatar {
+      width: 50px;
+      height: 50px;
+      margin-bottom: 10px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+    }
+
+    .assistant-chat {
+      width: 100%;
+      background-color: $color-light; // Consistent background
+      border-radius: 10px;
+      box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.05);
+
+      .messages {
+        height: 250px;
+        overflow-y: auto;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .message {
+          padding: 8px 12px;
+          border-radius: 20px;
+          background-color: $color-light; // Consistent message background
+          margin-bottom: 5px;
+          max-width: 80%;
+          word-wrap: break-word;
+
+          &.user {
+            align-self: flex-end;
+            background-color: $primary-color; // Use variable
+            color: white;
+          }
+
+          &.bot {
+            align-self: flex-start;
+            background-color: $background-dark; // Use variable for contrast
+          }
+
+          &.typing {
+            min-height: 20px;
+          }
+        }
+      }
+
+      .input-area {
+        display: flex;
+        border-top: 1px solid #ddd;
+        padding: 10px;
+
+        input {
+          flex-grow: 1;
+          border: 1px solid #ccc;
+          padding: 8px;
+          margin-right: 10px;
+          border-radius: 5px;
+        }
+
+        button {
+          padding: 8px 12px;
+          background-color: $primary-color;
+          border: none;
+          border-radius: 5px;
+          color: white;
+          cursor: pointer;
+
+          &:hover {
+            background-color: darken($primary-color, 10%);
+          }
+
+          &:disabled {
+            background-color: lighten($primary-color, 10%);
+            cursor: default;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Dark Mode Styles
+body.dark-mode {
+  .assistant-wrapper {
+    .assistant-container {
+      background-color: $background-dark;
+      color: $text-dark;
+
+      .assistant-chat {
+        background-color: darken($color-light, 5%);
+
+        .messages {
+          .message {
+            background-color: darken($color-light, 10%);
+
+            &.user {
+              background-color: darken($primary-color, 10%);
+            }
+
+            &.bot {
+              background-color: lighten($background-dark, 10%);
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,75 @@
+.modal-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.contact-dialog {
+  position: relative;
+  background: white;
+  border-radius: 10px;
+  padding: 5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 50vh; // Set a max-width for your dialog
+  width: 90%; // Use a percentage width for responsiveness
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+
+    input, textarea {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 10px;
+    }
+
+    button {
+      background-color: #0056b3;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: darken(#0056b3, 10%);
+      }
+    }
+  }
+
+
+  .close-button {
+    // This targets the close-button class only when it is inside contact-dialog
+    top: -10px; // Adjust this value to move the button outside of the box if desired
+    right: -10px; // Same as above, adjust as needed
+
+  }
+
+  .social-media-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+
+    a {
+      color: inherit; // Ensures that anchor tags inside this div take the parent's color
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: #0056b3; // Example hover color, change as needed
+      }
+    }
+  }
+}

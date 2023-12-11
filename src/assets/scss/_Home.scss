@@ -74,6 +74,7 @@ $dark-primary-color: rgb(116, 87, 121); // Dark mode primary color
         &:hover {
           background-color: darken($primary-color, 10%);
           transform: translateY(-2px);
+          cursor: pointer;
 
           svg {
             transform: scale(1.1);
@@ -90,6 +91,10 @@ $dark-primary-color: rgb(116, 87, 121); // Dark mode primary color
 
 // Dark Mode Styles
 body.dark-mode {
+  .modal-content {
+    background: rgba(51, 51, 51, 0.85); // Semi-transparent for dark mode glass effect
+    border: 1px solid rgba(255, 255, 255, 0.1); // Subtle border for dark mode
+  }
   .home {
     background-color: #121212; // Dark mode background color
 
@@ -113,12 +118,129 @@ body.dark-mode {
   }
 }
 
+// Modal Overlay for Resume Selection
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75); // Darker overlay for better focus on the modal
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  animation: fadeInModal 0.3s forwards;
+  backdrop-filter: blur(5px); // Slightly less blur for a clearer background
+}
+
+// Modal Content with responsive sizing
+
+// Add this style globally, not nested in any class
+.body-no-scroll {
+  overflow: hidden; // Prevent scrolling on the body
+}
+
+.modal-content {
+  background: rgba(255, 255, 255, 0.95); // Less transparency for better readability
+  border-radius: 15px; // Slightly rounded corners for a softer look
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); // Stronger shadow for depth
+  max-height: 80vh; // Limit height to ensure modal doesn't get too tall
+  overflow: hidden; // Add scroll inside modal if content is too big
+  position: relative; // For positioning of the close button
+  transform: scale(1); // Start at normal size
+  transition: transform 0.3s, box-shadow 0.3s;
+  max-width: 80%; // Allow a bit more margin on the sides
+  padding: 4% 5%; // Increase padding for better touch interaction
+}
+
+@keyframes scaleInModal {
+  to {
+    transform: scale(1);
+  }
+}
+
+.close-modal {
+  position: absolute;
+  top: 0.5rem; // Position it closer to the top-right corner of the modal-content
+  right: 0.5rem; // Consistent with the top position
+  width: 30px; // Fixed width
+  height: 30px; // Fixed height
+  background-color: transparent; // No background color for a cleaner look
+  border: 1px solid #ccc; // A light border can be added for better visibility
+  border-radius: 50%; // Circle shape
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #ccc; // A neutral color that's visible on both light and dark backgrounds
+  transition: color 0.2s, background-color 0.2s; // Smooth transition for hover effect
+
+  &:hover {
+    color: #fff; // Change color on hover
+    background-color: rgba(
+      0,
+      0,
+      0,
+      0.8
+    ); // Slight background color on hover for better visibility
+  }
+
+  svg {
+    width: 16px; // Smaller icon size for a more refined look
+    height: 16px;
+  }
+
+  &:focus {
+    outline: none; // Remove default focus outline for a cleaner look
+  }
+}
+// Fade in and scale up the modal smoothly
+@keyframes fadeInModal {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+// .assistant-toggle {
+//   position: fixed;
+//   bottom: 20px;
+//   left: 20px;
+//   background: none;
+//   border: none;
+//   cursor: pointer;
+//   z-index: 100; // Make sure this is higher than other elements but below modal overlays
+
+//   img {
+//     width: 50px; // Or whatever size you want
+//     height: 50px;
+//   }
+// }
+
+// // You might want to style the Assistant component when it's open
+// .assistant-container {
+//   position: fixed;
+//   bottom: 80px; // Position it above the toggle button
+//   right: 20px;
+//   z-index: 100;
+//   // Add any additional styles for the open state
+// }
+
+
+
 // Responsive design adjustments
 @media (max-width: 768px) {
   .home {
     .intro-section {
       h1 {
-        font-size: 2rem;
+        font-size: 1.8rem; // Smaller font size for smaller screens
       }
 
       p {
@@ -135,5 +257,18 @@ body.dark-mode {
         }
       }
     }
+  }
+  // Adjust modal styles for medium devices
+  .modal-content {
+    max-width: 90%; // Allow a bit more margin on the sides
+    padding: 4% 5%; // Increase padding for better touch interaction
+  }
+}
+
+@media (max-width: 480px) {
+  // Adjust modal styles for small devices
+  .modal-content {
+    max-width: 95%; // Allow modal to take up more width
+    padding: 5% 6%; // Further increase padding for better touch interaction
   }
 }

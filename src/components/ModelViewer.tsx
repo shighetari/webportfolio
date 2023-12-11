@@ -39,6 +39,7 @@ import MechaWep from "../models/mechaWep";
 // import Mew from "../models/Mew";
 import { ChatBox } from "./ChatBox";
 import { AIDialogBox } from "./AIDialogBox";
+import { Link } from "react-router-dom";
 
 function Model() {
   const { scene, animations } = useGLTF(
@@ -120,6 +121,10 @@ export default function ModelViewer() {
       controls.update();
     }
   };
+
+  const navigateToHome = () => {
+    window.location.href = "/";
+  }
 
   // Button misc
   const onToggleContact = () => {
@@ -236,13 +241,11 @@ export default function ModelViewer() {
         </Canvas>
       </div>
       <div className="overlay-ui">
-        {/* <button onClick={resetCamera}>Reset Camera</button>
-        <button>button two</button>
-        <button>button three</button> */}
 
         <AnimatedButton label="Reset Camera" onClick={resetCamera} />
         <AnimatedButton label="Dev Alpha 1.0" onClick={undefined} />
         <AnimatedButton label="AI Assistant" onClick={toggleChatDialog} />
+        <AnimatedButton label="Go Back" onClick={navigateToHome} />
         <BackgroundMusic />
         <ContactButton onClick={onToggleContact} />
         <AIDialogBox isVisible={isChatVisible} onClose={toggleChatDialog}>
