@@ -8,6 +8,9 @@ import React, {
 } from "react";
 import { sendPromptToAssistant } from "../services/AssistantService";
 import "../assets/scss/_Assistant.scss";
+import userIcon from "/icons/kalilinux-svgrepo-com.svg"
+import assistantIcon from "/icons/linux-tux-svgrepo-com.svg"
+import inputIcon from "/icons/arch-linux-svgrepo-com(2).svg";
 
 type ResponseType = { type: "user" | "bot"; text: string };
 
@@ -19,6 +22,13 @@ const Assistant = () => {
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
   const [isOpen, setIsOpen] = useState<boolean>(false); // State to track if the chat box is open
   const assistantRef = useRef<HTMLDivElement | null>(null); // Ref for the chat box
+  const [inputDisabled, setInputDisabled] = useState(false);
+  const [helpOptions, setHelpOptions] = useState([
+    "Who are you?",
+    "Who is Francisco?",
+    "Why should I hire Francisco?",
+  ]); // Add more help options as needed
+  const [isHelpOptionsVisible, setIsHelpOptionsVisible] = useState(false);
 
   // Function to toggle the chat box open or closed
   const toggleChat = () => {
@@ -45,8 +55,9 @@ const Assistant = () => {
   };
 
   const handleSend = async () => {
-    if (input.trim()) {
-      setResponses((responses) => [...responses, { type: "user", text: input }]);
+    if (input.trim() && !inputDisabled) {
+      setInputDisabled(true); // Disable input to prevent spamming
+      setResponses([...responses, { type: "user", text: input }]);
       setIsTyping(true);
 
       try {
@@ -79,7 +90,21 @@ const Assistant = () => {
         setIsTyping(false);
         setInput("");
       }
+      setInputDisabled(false); // Re-enable input after receiving the response
     }
+  };
+
+  // Toggle help options visibility
+  const toggleHelpOptions = () => {
+    setIsHelpOptionsVisible(!isHelpOptionsVisible);
+    console.log("toggleHelpOptions()");
+  };
+
+  // Function to handle help option selection
+  const handleHelpOptionClick = (option: string) => {
+    setInput(option); // Set input to selected option
+    setIsHelpOptionsVisible(false); // Close the help menu after selection
+    console.log(option, "handleHelpOptionClick()");
   };
 
   useEffect(() => {
@@ -97,47 +122,67 @@ const Assistant = () => {
     <div className="assistant-wrapper" ref={assistantRef}>
       {!isOpen && (
         <button className="assistant-toggle" onClick={toggleChat}>
-          {/* Icon to open the chat box */}
           <img src="icons/catdog.png" alt="Open Chat" />
         </button>
       )}
 
       {isOpen && (
         <div className="assistant-container">
-          {/* ...rest of  chat box UI */}
-          <div className="assistant-container">
-            <div className="assistant-avatar">
-              <img src="icons/catdog.png" alt="Assistant Avatar" onClick={toggleChat} />
-            </div>
-            <button className="assistant-minimize" onClick={toggleChat}>
-            Minimize
+          {/* Help button */}
+          <button className="help-button" onClick={toggleHelpOptions}>
+            ?
           </button>
-            <div className="assistant-chat">
-              <div className="messages">
-                {responses.map((response, index) => (
-                  <div key={index} className={`message ${response.type}`}>
-                    {response.text}
-                  </div>
-                ))}
-                {isTyping && <div className="message bot typing">Typing...</div>}
-                <div ref={messagesEndRef} />
+
+          {/* Help options */}
+          <div
+            className={`help-options ${
+              isHelpOptionsVisible ? "help-options-visible" : ""
+            }`}
+          >
+            {helpOptions.map((option, index) => (
+              <div
+                key={index}
+                className="help-option"
+                onClick={() => handleHelpOptionClick(option)}
+              >
+                {option}
               </div>
-              <div className="input-area">
-                <input
-                  type="text"
-                  value={input}
-                  onChange={handleInputChange}
-                  onKeyPress={handleKeyPress}
-                  placeholder="Ask me anything..."
-                />
-                <button onClick={handleSend} disabled={isTyping || !input.trim()}>
-                  Send
-                </button>
-                
-              </div>
-            </div>
+            ))}
           </div>
 
+          {/* Chat box UI */}
+          <div className="assistant-toggle">
+            <img src="icons/catdog.png" alt="Assistant Avatar" onClick={toggleChat} />
+          </div>
+          {/* <button className="assistant-minimize" onClick={toggleChat}>
+            Minimize
+          </button> */}
+          <div className="assistant-chat">
+            <div className="messages">
+              {responses.map((response, index) => (
+                <div key={index} className={`message ${response.type}`}>
+                   <img src={response.type === "user" ? userIcon : assistantIcon} alt={response.type} />
+                  {response.text}
+                </div>
+              ))}
+              {isTyping && <div className="message bot typing">Typing.</div>}
+              <div ref={messagesEndRef} />
+            </div>
+            <div className="input-area">
+            <img src={inputIcon} alt="Input Icon" className="input-icon" />
+              <input
+                type="text"
+                value={input}
+                onChange={handleInputChange}
+                onKeyPress={handleKeyPress}
+                placeholder="Ask me anything..."
+                disabled={inputDisabled}
+              />
+              <button onClick={handleSend} disabled={isTyping || !input.trim()}>
+                Send
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </div>

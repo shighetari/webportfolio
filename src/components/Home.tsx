@@ -9,10 +9,10 @@ import {
   FaEnvelope,
   FaWindowClose,
   FaRedhat,
+  FaCat,
 } from "react-icons/fa"; // Importing icons
 import { FcAssistant } from "react-icons/fc";
 import Resume from "./Resume";
-import SkillsOverview from "./SkillsOverview";
 import DarkModeToggle from "./DarkModeToggle";
 import "../assets/scss/_Home.scss";
 import "../assets/scss/_Resume.scss";
@@ -85,7 +85,7 @@ const Home = () => {
             </div>
           )}
           <button onClick={() => toggleSection("skills")}>
-            <FcAssistant /> AI Assistant
+            <FaCat /> Study Zone
           </button>
           <button>
             <FaUser /> About me

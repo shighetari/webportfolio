@@ -1,51 +1,52 @@
 @import "variables";
 
-.assistant-minimize {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0.5rem;
-  border: none;
-  background-color: $primary-color;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-  font-size: 1rem;
-  transition: background-color 0.3s, transform 0.2s;
-  min-width: 150px; // Uniform width
-
-  &:hover {
-    background-color: darken($primary-color, 10%);
-    transform: scale(1.05);
-  }
-}
-
 .assistant-wrapper {
   position: fixed;
   bottom: 20px;
   right: 20px;
   z-index: 100;
 
-  .assistant-toggle {
+  @media (max-width: 768px) {
+    bottom: 10px;
+    right: 10px;
+  }
+
+  .assistant-toggle,
+  .assistant-minimize {
+    margin-bottom: .6vh;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     width: 50px;
     height: 50px;
-    background-color: #5e60ce;
     border-radius: 50%;
     cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s;
+
+    &:hover {
+      transform: scale(1.1);
+    }
 
     img {
       width: 100%;
       height: 100%;
       border-radius: 50%;
-      transition: transform 0.2s;
+    }
+  }
 
-      &:hover {
-        transform: scale(1.1);
-      }
+  .assistant-toggle {
+    background-color: #5e60ce; // Replace with variable if needed
+  }
+
+  .assistant-minimize {
+    background-color: $primary-color;
+    color: white;
+    border: none;
+    font-size: 1rem;
+    min-width: 150px; // Uniform width
+
+    &:hover {
+      background-color: darken($primary-color, 10%);
     }
   }
 
@@ -56,67 +57,96 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    background-color: $color-light; // Use variable for light theme
+    background-color: $color-light;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 350px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    width: 650px;
     max-width: 90vw;
     padding: 10px;
     overflow: hidden;
-    transition: all 0.3s ease-in-out;
+    transition: transform 0.3s ease, background-color 0.3s ease, opacity 0.3s ease;
 
     @media (max-width: 768px) {
       width: 80%;
+    }
+
+    &:hover {
+      background: rgba(155, 107, 152, 0.75);
     }
 
     .assistant-avatar {
       width: 50px;
       height: 50px;
       margin-bottom: 10px;
+      cursor: pointer;
 
       img {
-        width: 100%;
-        height: 100%;
         border-radius: 50%;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        transition: box-shadow 0.3s ease;
+
+        &:hover {
+          box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+        }
       }
     }
 
     .assistant-chat {
       width: 100%;
-      background-color: $color-light; // Consistent background
+      background: rgba(199, 194, 194, 0.6);
       border-radius: 10px;
       box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.05);
 
       .messages {
-        height: 250px;
         overflow-y: auto;
         padding: 10px;
         display: flex;
         flex-direction: column;
         gap: 10px;
-
+        max-height: 450px; // Set a max-height
+       
+  
         .message {
           padding: 8px 12px;
           border-radius: 20px;
-          background-color: $color-light; // Consistent message background
+          background-color: $color-light;
           margin-bottom: 5px;
           max-width: 80%;
           word-wrap: break-word;
+          display: flex;
+          align-items: center;
+    
+          img {
+            width: 30px; // Adjust size as needed
+            height: 30px;
+            margin-right: 10px; // Space between icon and text
+          }
 
           &.user {
             align-self: flex-end;
-            background-color: $primary-color; // Use variable
+            background-color: $primary-color;
             color: white;
           }
 
           &.bot {
             align-self: flex-start;
-            background-color: $background-dark; // Use variable for contrast
+            background-color: white;
           }
 
           &.typing {
-            min-height: 20px;
+            &:after {
+              content: '...';
+              display: inline-block;
+              width: 2vh;
+              animation: typingDots 1.5s steps(4, end) infinite;
+            }
+          }
+
+          @keyframes typingDots {
+            0%, 100% { content: ''; }
+            33% { content: '.'; }
+            66% { content: '..'; }
+            99% { content: '...'; }
           }
         }
       }
@@ -125,6 +155,12 @@
         display: flex;
         border-top: 1px solid #ddd;
         padding: 10px;
+        align-items: center;
+        .input-icon {
+          width: 24px; // Adjust size as needed
+          height: 24px;
+          margin-right: 10px; // Space between icon and input field
+        }
 
         input {
           flex-grow: 1;
@@ -153,6 +189,54 @@
         }
       }
     }
+
+    .help-button {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background-color: #d8a1e0; // Example color, replace with variable if needed
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 20px;
+      cursor: pointer;
+      z-index: 5;
+
+      &:hover {
+        background-color: lighten(#d8a1e0, 10%);
+      }
+    }
+
+    .help-options {
+      display: none; // Start hidden
+      position: absolute;
+      top: 40px; // Adjust as needed
+      left: 10px;
+      z-index: 5;
+      background-color: white; // Example color, replace with variable if needed
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 5px;
+
+      .help-option {
+        padding: 5px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #d8a1e0; // Example hover color
+        }
+      }
+    }
+
+    .help-options-visible {
+      display: block;
+    }
   }
 }
 
@@ -164,7 +248,9 @@ body.dark-mode {
       color: $text-dark;
 
       .assistant-chat {
-        background-color: darken($color-light, 5%);
+        // background-color: darken($color-light, 5%);
+        // background-color: $background-dark;
+      background: rgba(199, 194, 194, .2);
 
         .messages {
           .message {
@@ -177,6 +263,37 @@ body.dark-mode {
             &.bot {
               background-color: lighten($background-dark, 10%);
             }
+          }
+        }
+
+        .input-area {
+          input {
+            border: 1px solid lighten($background-dark, 20%);
+            background-color: lighten($background-dark, 10%);
+            color: $text-dark;
+          }
+
+          button {
+            background-color: darken($primary-color, 10%);
+            &:hover {
+              background-color: darken($primary-color, 20%);
+            }
+          }
+        }
+      }
+
+      .help-button {
+        background-color: lighten($background-dark, 10%);
+        &:hover {
+          background-color: lighten($background-dark, 20%);
+        }
+      }
+
+      .help-options {
+        background-color: lighten($background-dark, 10%);
+        .help-option {
+          &:hover {
+            background-color: lighten($background-dark, 20%);
           }
         }
       }
