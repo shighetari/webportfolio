@@ -1,57 +1,112 @@
 // src/components/Home.tsx
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { FaBook, FaLightbulb, FaUser, FaProjectDiagram, FaEnvelope } from 'react-icons/fa'; // Importing icons
-import Resume from './Resume';
-import SkillsOverview from './SkillsOverview';
-import DarkModeToggle from './DarkModeToggle';
-import '../assets/scss/_Home.scss';
-import useTypewriter from '../hooks/useTypewriter';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import {
+  FaBook,
+  FaLightbulb,
+  FaUser,
+  FaProjectDiagram,
+  FaEnvelope,
+  FaWindowClose,
+  FaRedhat,
+  FaCat,
+} from "react-icons/fa"; // Importing icons
+import { FcAssistant } from "react-icons/fc";
+import Resume from "./Resume";
+import DarkModeToggle from "./DarkModeToggle";
+import "../assets/scss/_Home.scss";
+import "../assets/scss/_Resume.scss";
+import "../assets/scss/_ResumeSelection.scss";
+import useTypewriter from "../hooks/useTypewriter";
+import ContactDialog from "./ContactDialog";
+import { ChatBox } from "./ChatBox";
+import Assistant from "./Assistant";
 
 const Home = () => {
-    const [activeSection, setActiveSection] = useState('');
-    const toggleSection = (section: any) => {
-      setActiveSection(activeSection !== section ? section : '');
-    };
+  const [isContactDialogOpen, setIsContactDialogOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
+  // const [isAssistantOpen, setIsAssistantOpen] = useState(false);
 
+  // This function toggles the state of the Assistant component
+  // const toggleAssistant = () => {
+  //   setIsAssistantOpen(!isAssistantOpen);
+  // };
+
+  const toggleContactDialog = () => {
+    setIsContactDialogOpen(!isContactDialogOpen);
+  };
+
+  const toggleSection = (section: any) => {
+    setActiveSection(activeSection !== section ? section : "");
+  };
+
+  const [showResumeModal, setShowResumeModal] = useState(false);
+  const toggleResumeModal = () => {
+    setShowResumeModal(!showResumeModal);
+  };
 
   const jobTitles = [
-    "Software Engineer", 
-    "DevOps Engineer", 
-    "Cybersecurity Enthusiast", 
-    "Retired Competitive Gamer", 
-    "AI Enthusiast", 
-    "Full-Stack Developer", 
-    "Cloud Engineer", 
-    "Retired Content Creator", 
+    "Software Engineer",
+    "DevOps Engineer",
+    "InfoSec Enthusiast",
+    "Cat lover",
+    "AI Enthusiast",
+    "Full-Stack Developer",
+    "Cloud Engineer",
+    "Friend",
     "Tech Enthusiast",
     "Security Professional",
   ];
   const typewriterText = useTypewriter(jobTitles);
 
   return (
+    <div> 
     <main className="home">
       <DarkModeToggle />
       <section className="intro-section">
         <h1>Welcome to My Web Portfolio</h1>
-        <p>I'm Francisco Barrios,</p>  
-        
-        <p className="dynamic-title">{typewriterText}</p> 
-        <p>Continuously exploring the dynamic world of tech. Discover my journey and skills.</p>
-
-
+        <h2>Francisco Barrios</h2>
+        <p className="dynamic-title">| {typewriterText} |</p>{" "}
+        <p>
+          one man, many hats <FaRedhat />
+        </p>
         <div className="action-buttons">
-          <button onClick={() => toggleSection('resume')}><FaBook /> View My Resume </button>
-          <button onClick={() => toggleSection('skills')}><FaLightbulb /> Skills Overview</button>
-          <button><FaUser /> About me</button>
-          <button><FaProjectDiagram /> Projects</button>
-          <button><FaEnvelope /> Contact me</button>
-          <Link to="/portfolio" className="enter-portfolio-btn">Enter 3D Portfolio</Link>
+          <button onClick={toggleResumeModal}>
+            <FaBook /> View My Resume
+          </button>
+          {showResumeModal && (
+            <div className="modal-overlay">
+              <div className="modal-content">
+                <Resume />
+                <button className="close-modal" onClick={toggleResumeModal}>
+                  <FaWindowClose /> <> Close </>
+                </button>
+              </div>
+            </div>
+          )}
+          <button onClick={() => toggleSection("skills")}>
+            <FaCat /> Study Zone
+          </button>
+          <button>
+            <FaUser /> About me
+          </button>
+          <button>
+            <FaProjectDiagram /> Projects
+          </button>
+          <button onClick={toggleContactDialog}>
+            <FaEnvelope /> Contact me
+          </button>
+          <ContactDialog isOpen={isContactDialogOpen} onClose={toggleContactDialog} />
+          <Link to="/portfolio" className="enter-portfolio-btn">
+            Enter 3D Portfolio
+          </Link>
         </div>
       </section>
-      {activeSection === 'resume' && <Resume />}
-      {activeSection === 'skills' && <SkillsOverview />}
+      {/* {activeSection === "skills" && <Assistant />} */}
     </main>
+    <Assistant />
+
+    </div>
   );
 };
 
