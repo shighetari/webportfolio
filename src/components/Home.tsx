@@ -60,52 +60,56 @@ const Home = () => {
   const typewriterText = useTypewriter(jobTitles);
 
   return (
-    <div> 
-    <main className="home">
-      <DarkModeToggle />
-      <section className="intro-section">
-        <h1>Welcome to My Web Portfolio</h1>
-        <h2>Francisco Barrios</h2>
-        <p className="dynamic-title">| {typewriterText} |</p>{" "}
-        <p>
-          one man, many hats <FaRedhat />
-        </p>
-        <div className="action-buttons">
-          <button onClick={toggleResumeModal}>
-            <FaBook /> View My Resume
-          </button>
-          {showResumeModal && (
-            <div className="modal-overlay">
-              <div className="modal-content">
-                <Resume />
-                <button className="close-modal" onClick={toggleResumeModal}>
-                  <FaWindowClose /> <> Close </>
-                </button>
+    <div>
+      <main className="home">
+        <DarkModeToggle />
+        <section className="intro-section">
+          <h1>Welcome to My Web Portfolio</h1>
+          <h2>Francisco Barrios</h2>
+          <p className="dynamic-title">| {typewriterText} |</p>{" "}
+          <p>
+            one man, many hats <FaRedhat />
+          </p>
+          <div className="action-buttons">
+            <button onClick={toggleResumeModal}>
+              <FaBook /> View My Resume
+            </button>
+            {showResumeModal && (
+              <div className="modal-overlay">
+                <div className="modal-content">
+                  <Resume />
+                  <button className="close-modal" onClick={toggleResumeModal}>
+                    <FaWindowClose /> <> Close </>
+                  </button>
+                </div>
               </div>
-            </div>
-          )}
-          <button onClick={() => toggleSection("skills")}>
-            <FaCat /> Study Zone
-          </button>
-          <button>
-            <FaUser /> About me
-          </button>
-          <button>
-            <FaProjectDiagram /> Projects
-          </button>
-          <button onClick={toggleContactDialog}>
-            <FaEnvelope /> Contact me
-          </button>
-          <ContactDialog isOpen={isContactDialogOpen} onClose={toggleContactDialog} />
-          <Link to="/portfolio" className="enter-portfolio-btn">
-            Enter 3D Portfolio
-          </Link>
-        </div>
-      </section>
-      {/* {activeSection === "skills" && <Assistant />} */}
-    </main>
-    <Assistant />
+            )}
 
+            {/* <button onClick={() => toggleSection("skills")}>
+            <FaCat /> Study Zone
+
+          </button> */}
+            <Link to="/study" className="enter-portfolio-btn">
+            <FaCat /> Study Zone
+            </Link>
+            <button>
+              <FaUser /> About me
+            </button>
+            <button>
+              <FaProjectDiagram /> Projects
+            </button>
+            <button onClick={toggleContactDialog}>
+              <FaEnvelope /> Contact me
+            </button>
+            <ContactDialog isOpen={isContactDialogOpen} onClose={toggleContactDialog} />
+            <Link to="/portfolio" className="enter-portfolio-btn">
+              Enter 3D Portfolio
+            </Link>
+          </div>
+        </section>
+        {/* {activeSection === "skills" && <Assistant />} */}
+      </main>
+      <Assistant />
     </div>
   );
 };
