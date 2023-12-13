@@ -1,0 +1,155 @@
+.study-zone {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.5s ease;
+    position: relative;
+    overflow: hidden;
+
+    .music-player {
+        position: absolute;
+        bottom: 1vh;
+        left: 1vh;
+    }
+
+    .reset-particles-button {
+        cursor: pointer;
+        position: sticky;
+        bottom: 10vh;
+        top: 90vh;
+        right: 1vh;
+    }
+
+    .background-selector {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        button {
+            // Apply glowing effect and vibrant styles
+            background-color: #d09898; // Change as needed
+            color: #333; // Change as needed
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.3), inset 0 0 10px rgba(255, 255, 255, 0.3);
+            &:hover {
+                box-shadow: 0 0 15px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(255, 255, 255, 0.5);
+            }
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: #d09898;
+            border: 1px solid #9e9898;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            button {
+                display: block;
+                width: auto;
+                padding: 5px;
+                text-align: center;
+                border: none;
+                background-color: transparent;
+                &:hover {
+                    background-color: #f7f7f7;
+                }
+            }
+        }
+    }
+    
+    // Button styles
+    button {
+        padding: 10px 20px;
+        margin: 0 5px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        &:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+    }
+
+
+    .back-home-button {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        padding: 10px 15px;
+        background-color: rgba(255, 255, 255, 0.8);
+        color: #333;
+        font-size: 1rem;
+        border: none;
+        border-radius: 30px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none; // This removes the underline
+        z-index: 10; // Ensure the button is above other elements
+        // Fixing text wrapping and button styles for responsiveness
+        white-space: nowrap; // Prevents text from wrapping
+        overflow: hidden; // Keeps the content contained within the button
+        text-overflow: ellipsis; // Adds an ellipsis if the text is too long
+
+        &:hover {
+            background-color: rgba(255, 255, 255, 1);
+            // box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            transform: translateY(-3px);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.3), inset 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        &:active {
+            transform: translateY(-1px);
+        }
+
+        svg {
+            font-size: 1.2rem;
+        }
+    }
+
+    // Gradient backgrounds
+    &.gradient1 {
+        background: linear-gradient(270deg, #ff9a9e, #fad0c4);
+    }
+    &.gradient2 {
+        background: linear-gradient(270deg, #a1c4fd, #c2e9fb);
+    }
+    &.gradient3 {
+        background: linear-gradient(270deg, #d299c2, #fef9d7);
+    }
+    // Add more gradients here
+}
+    // Responsive design for smaller screens
+    @media (max-width: 768px) {
+        .back-home-button {
+            top: 10px;
+            left: 10px;
+            padding: 8px 12px; // Adjust padding for smaller screens
+            font-size: 0.8rem; // Adjust font size for smaller screens
+        }
+
+        .background-selector {
+            top: 50px; // Move the background selector down to prevent overlap
+            button {
+                padding: 5px 10px; // Adjust button padding for smaller screens
+                font-size: 0.8rem; // Adjust font size for smaller screens
+            }
+        }
+
+        h1 {
+            font-size: 1.5rem; // Adjust the heading font size for smaller screens
+        }
+    }
+
+    #tsparticles canvas {
+        // This ensures that the canvas itself has no border or shadow that might interfere
+        box-shadow: none !important;
+        border: none !important;
+        background-color: transparent !important;
+    }
