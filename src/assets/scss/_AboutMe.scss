@@ -1,0 +1,99 @@
+// src/assets/scss/_AboutMe.scss
+@import "_variables";
+
+.about-me {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  transition: background-color 0.3s, color 0.3s; // Ensure transitions are smooth
+
+  .about-me-card {
+    max-width: 800px;
+    margin: 20px;
+    background: rgb(227, 218, 227);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    text-align: center;
+    transition: background-color 0.3s, color 0.3s; // Smooth transition for dark mode
+
+    .about-me-photo {
+      width: 150px; // Adjust size as needed
+      height: 150px;
+      border-radius: 50%; // Circular image
+      margin-bottom: 20px;
+      object-fit: cover; // Ensures the image covers the area properly
+      border: 3px solid $primary-color;
+      transition: border-color 0.3s; // Transition for border color
+    }
+
+    h1 {
+      color: $color-primary;
+    }
+
+    .title {
+      color: $dark-primary-color;
+      font-size: 20px;
+      margin: 10px 0;
+    }
+
+    p {
+      line-height: 1.6;
+      color: $dark-primary-color;
+    }
+
+    .btn {
+      border: none;
+      background-color: $primary-color;
+      color: $color-light;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: darken($primary-color, 10%);
+      }
+    }
+  }
+
+  // Media queries for responsiveness
+  @media (max-width: 768px) {
+    .about-me-card {
+      padding: 20px;
+    }
+  }
+
+  // Dark Mode Styles
+  &.dark-mode {
+    // This ensures that the dark mode styles only apply when the body has the class 'dark-mode'
+    background-color: $background-dark;
+    color: $text-dark;
+
+    .about-me-card {
+      background: $dark-primary-color;
+      color: $text-dark;
+
+      .about-me-photo {
+        border-color: $text-dark; // Adjust the border color for dark mode
+      }
+
+      h1,
+      .title,
+      p {
+        color: $text-dark; // Adjust text color for better readability
+      }
+
+      .btn {
+        background-color: $text-dark;
+        color: $primary-color;
+
+        &:hover {
+          background-color: lighten($text-dark, 10%);
+        }
+      }
+    }
+  }
+}

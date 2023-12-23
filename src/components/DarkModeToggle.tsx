@@ -1,18 +1,11 @@
 // src/components/DarkModeToggle.tsx
-import React, { useState, useEffect } from 'react';
-import { FaSun, FaMoon } from 'react-icons/fa'; // Import Sun and Moon icons from react-icons
+import React from 'react';
+import { useDarkMode } from '../hooks/DarkModeContext';
+import { FaSun, FaMoon } from 'react-icons/fa';
 import '../assets/scss/_DarkModeToggle.scss';
 
 const DarkModeToggle = () => {
-  const [darkMode, setDarkMode] = useState(false);
-
-  useEffect(() => {
-    document.body.className = darkMode ? 'dark-mode' : '';
-  }, [darkMode]);
-
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
+  const { darkMode, toggleDarkMode } = useDarkMode();
 
   return (
     <button onClick={toggleDarkMode} className={`dark-mode-toggle ${darkMode ? 'dark' : 'light'}`}>
