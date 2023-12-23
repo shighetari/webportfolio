@@ -119,12 +119,12 @@ const Assistant = () => {
   };
 
   return (
-    <div className="assistant-wrapper" ref={assistantRef}>
-      {!isOpen && (
-        <button className="assistant-toggle" onClick={toggleChat}>
-          <img src="icons/catdog.png" alt="Open Chat" />
-        </button>
-      )}
+    <div className={`assistant-wrapper ${isOpen ? '' : 'show-bubble'}`} ref={assistantRef}>
+    {!isOpen && (
+      <button className="assistant-toggle" onClick={toggleChat}>
+        <img src="icons/catdog.png" alt="Open Chat" />
+      </button>
+    )}
 
       {isOpen && (
         <div className="assistant-container">
