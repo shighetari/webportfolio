@@ -1,3 +1,5 @@
+import { IOptions } from '../components/StudyZone'; // Replace './path/to/IOptions' with the actual path to the file containing the IOptions type
+
 // src/config/particlesConfig.ts
 const particlesConfig: IOptions = {
     particles: {
