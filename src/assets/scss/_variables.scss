@@ -6,3 +6,10 @@ $color-dark: #333;
 $color-light: #FFF;
 $background-dark: #121212;
 $text-dark: #FFF;
+
+// Additional colors for shadows and transitions
+$color-light-shadow: rgba(0, 0, 0, 0.1);
+$color-dark-shadow: rgba(255, 255, 255, 0.1);
+
+// Define colors for dark mode
+$dark-primary-color: #333;

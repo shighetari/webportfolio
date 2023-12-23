@@ -120,7 +120,6 @@ const Assistant = () => {
 
   return (
     <div className="assistant-wrapper" ref={assistantRef}>
-      Click the cat to open the chat!
       {!isOpen && (
         <button className="assistant-toggle" onClick={toggleChat}>
           <img src="icons/catdog.png" alt="Open Chat" />
