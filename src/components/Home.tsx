@@ -86,13 +86,13 @@ const Home = () => {
             )}
 
             {/* <button onClick={() => toggleSection("skills")}>
-            <FaCat /> Study Zone
+            <FaCat /> Study Zonenb 
 
           </button> */}
             <Link to="/study" className="enter-portfolio-btn">
-              <FaCat /> Study Zone
+              <FaCat /> Study Zoned  
             </Link>
-            <Link to="/aboutme" className="enter-portfolio-btn">
+      <Link to="/aboutme" className="enter-portfolio-btn">
               <FaUser /> About me
             </Link>
             <Link to="/projects" className="enter-portfolio-btn">

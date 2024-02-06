@@ -2,7 +2,7 @@
 @import '_variables.scss';
 
 .home-button {
-    padding: 0.5em 1em; // Reduced padding
+    padding: 0.5vh 20vh; // Reduced padding
     font-size: 0.85rem; // Smaller font size for a more elegant appearance
     background-color: $color-primary; // Primary color for consistency
     color: $color-light;
@@ -10,12 +10,14 @@
     border-radius: 3px; // Slightly rounded corners for a modern look
     cursor: pointer;
     transition: all 0.3s ease;
-    align-self: start; // Aligns the button to the start of the container
     margin: 1em; // Adds some margin around the button
     text-transform: uppercase; // Industry-standard for buttons
     letter-spacing: 1px; // Spacing for better readability
     font-weight: bold; // Bold text for better visibility
     position: relative;
+    margin-top: 20px; // Adjust top margin as needed
+    align-self: center; // Ensures the button is centered in the flex container
+    z-index: 5; // Ensure it's above other elements if needed
 
     &:hover {
       background-color: darken($color-primary, 10%); // Darkens the button on hover for feedback
@@ -36,12 +38,18 @@
 
 // Mobile-first approach
 .projects-container {
-  display: grid;
-  grid-template-columns: 1fr;
+  // display: grid;
+  // grid-template-columns: 1fr;
+  // gap: 20px;
+  // padding: 20px;
+  // margin-bottom: 50px; // Space for dark mode button
+  display: flex; // Use flexbox for alignment
+  flex-direction: column; // Stack children vertically
+  align-items: center; // Center children horizontally
   gap: 20px;
   padding: 20px;
   margin-bottom: 50px; // Space for dark mode button
-
+  
   .dark-mode-button {
     position: fixed;
     bottom: 20px;
