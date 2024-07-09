@@ -22,37 +22,37 @@ const ResumeSelection: React.FC<ResumeSelectionProps> = ({ onSelectResume }) => 
 
   const resumes = [
     {
-      title: "Resume Format Dark Theme",
+      title: "Resume Format Professional",
       pdf: "resumes/resume1.pdf",
       key: 1,
       png: "resume1",
     },
     {
-      title: "Resume Format Modern",
+      title: "Resume Format Dark Theme",
       pdf: "resumes/resume2.pdf",
       key: 2,
       png: "resume2",
     },
     {
-      title: "Resume Format Professional",
+      title: "Resume Format Creative",
       pdf: "resumes/resume3.pdf",
       key: 3,
       png: "resume3",
     },
     {
-      title: "Resume Format Dublin",
+      title: "Resume Format Athens",
       pdf: "resumes/resume4.pdf",
       key: 4,
       png: "resume4",
     },
     {
-      title: "Resume Format Creative",
+      title: "Resume Format Contemporary",
       pdf: "resumes/resume5.pdf",
       key: 5,
       png: "resume5",
     },
     {
-      title: "Resume Format Vibes",
+      title: "Resume Format Modern",
       pdf: "resumes/resume6.pdf",
       key: 6,
       png: "resume6",

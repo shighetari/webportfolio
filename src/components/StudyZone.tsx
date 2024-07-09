@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 import particlesConfig from "../config/particlesConfig";
-import { FaArrowCircleDown } from 'react-icons/fa'; // Ensure you have `react-icons` installed
+import { FaArrowCircleDown } from 'react-icons/fa'; // Font Awesome
 import "../assets/scss/_StudyZone.scss";
 import BackgroundMusic from "./BackgroundMusic";
 

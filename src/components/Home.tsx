@@ -86,18 +86,18 @@ const Home = () => {
             )}
 
             {/* <button onClick={() => toggleSection("skills")}>
-            <FaCat /> Study Zone
+            <FaCat /> Study Zonenb 
 
           </button> */}
             <Link to="/study" className="enter-portfolio-btn">
-            <FaCat /> Study Zone
+              <FaCat /> Study Zone  
             </Link>
-            <button>
+      <Link to="/aboutme" className="enter-portfolio-btn">
               <FaUser /> About me
-            </button>
-            <button>
-              <FaProjectDiagram /> Projects
-            </button>
+            </Link>
+            <Link to="/projects" className="enter-portfolio-btn">
+            <FaProjectDiagram /> Projects
+            </Link>
             <button onClick={toggleContactDialog}>
               <FaEnvelope /> Contact me
             </button>
