@@ -67,7 +67,7 @@
 
       // Create the 'tail' of the speech bubble
       &:before {
-        content: '';
+        content: 'test2';   
         position: absolute;
         top: 50%;
         left: 100%; // Position the tail on the right edge of the bubble
@@ -76,6 +76,10 @@
         border-width: 10px 10px 10px 0;
         border-color: transparent #ebedee;
         transition: opacity 0.3s ease;
+      }
+      &.hide-tooltip:after {
+        content: ""; // This will remove the text when the .hide-tooltip class is applied
+        display: none; // Ensure the tooltip is not displayed at all
       }
 
       visibility: visible;

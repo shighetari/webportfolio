@@ -8,8 +8,8 @@ import React, {
 } from "react";
 import { sendPromptToAssistant } from "../services/AssistantService";
 import "../assets/scss/_Assistant.scss";
-import userIcon from "/icons/kalilinux-svgrepo-com.svg"
-import assistantIcon from "/icons/linux-tux-svgrepo-com.svg"
+import userIcon from "/icons/kalilinux-svgrepo-com.svg";
+import assistantIcon from "/icons/linux-tux-svgrepo-com.svg";
 import inputIcon from "/icons/arch-linux-svgrepo-com(2).svg";
 
 type ResponseType = { type: "user" | "bot"; text: string };
@@ -119,12 +119,18 @@ const Assistant = () => {
   };
 
   return (
-    <div className={`assistant-wrapper ${isOpen ? '' : 'show-bubble'}`} ref={assistantRef}>
-    {!isOpen && (
-      <button className="assistant-toggle" onClick={toggleChat}>
-        <img src="icons/catdog.png" alt="Open Chat" />
-      </button>
-    )}
+    <div
+      className={`assistant-wrapper ${isOpen ? "" : "show-bubble"}`}
+      ref={assistantRef}
+    >
+      {!isOpen && (
+        <button
+          className={`assistant-toggle ${isOpen ? "hide-tooltip" : ""}`}
+          onClick={toggleChat}
+        >
+          <img src="icons/catdog.png" alt="Open Chat" />
+        </button>
+      )}
 
       {isOpen && (
         <div className="assistant-container">
@@ -161,7 +167,10 @@ const Assistant = () => {
             <div className="messages">
               {responses.map((response, index) => (
                 <div key={index} className={`message ${response.type}`}>
-                   <img src={response.type === "user" ? userIcon : assistantIcon} alt={response.type} />
+                  <img
+                    src={response.type === "user" ? userIcon : assistantIcon}
+                    alt={response.type}
+                  />
                   {response.text}
                 </div>
               ))}
@@ -169,7 +178,7 @@ const Assistant = () => {
               <div ref={messagesEndRef} />
             </div>
             <div className="input-area">
-            <img src={inputIcon} alt="Input Icon" className="input-icon" />
+              <img src={inputIcon} alt="Input Icon" className="input-icon" />
               <input
                 type="text"
                 value={input}

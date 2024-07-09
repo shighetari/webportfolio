@@ -90,7 +90,7 @@ const Home = () => {
 
           </button> */}
             <Link to="/study" className="enter-portfolio-btn">
-              <FaCat /> Study Zoned  
+              <FaCat /> Study Zone  
             </Link>
       <Link to="/aboutme" className="enter-portfolio-btn">
               <FaUser /> About me
